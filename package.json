@@ -1,0 +1,22 @@
+{
+  "name": "projetototaliza",
+  "version": "1.0.0",
+  "description": "Projeto de teste para fazer simulações com o resultado das eleições brasileiras.",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lucasmenezes/projetoTotaliza.git"
+  },
+  "author": "Lucas Menezes",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/lucasmenezes/projetoTotaliza/issues"
+  },
+  "homepage": "https://github.com/lucasmenezes/projetoTotaliza#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
