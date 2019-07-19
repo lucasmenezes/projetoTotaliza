@@ -17,13 +17,16 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr id="eleicao_${eleicao.id}" for (eleicao in data.eleicoes)>
-                            <td>${eleicao.id}</td>
-                            <td>${eleicao.titulo}</td>
-                            <td>${eleicao.data}</td>
-                            <td><a href="">Editar</a></td>
-                            <td><a href="">Remover</a></td>
-                        </tr>
+                        <for|eleicao| of=data.eleicoes>
+                        <!-- <tr id="eleicao_${eleicao.id}" for (eleicao in data.eleicoes)> -->
+                            <tr >
+                                <td>${eleicao.id}</td>
+                                <td>${eleicao.titulo}</td>
+                                <td>${eleicao.data}</td>
+                                <td><a href="">Editar</a></td>
+                                <td><a href="">Remover</a></td>
+                            </tr>
+                        </for>
                     </tbody>
                 </table>
             </div>

@@ -11,7 +11,6 @@ var marko_template = module.exports = require("marko/src/html").t(__filename),
     component_globals_tag = marko_loadTag(require("marko/src/core-tags/components/component-globals-tag")),
     marko_forEach = marko_helpers.f,
     marko_escapeXml = marko_helpers.x,
-    marko_attr = marko_helpers.a,
     init_components_tag = marko_loadTag(require("marko/src/core-tags/components/init-components-tag")),
     await_reorderer_tag = marko_loadTag(require("marko/src/core-tags/core/await/reorderer-renderer"));
 
@@ -29,9 +28,7 @@ function render(input, out, __component, component, state) {
   marko_forEach(data.eleicoes, function(eleicao) {
     var $keyScope$0 = "[" + (($for$0++) + "]");
 
-    out.w("<tr" +
-      marko_attr("id", "eleicao_" + eleicao.id) +
-      "><td>" +
+    out.w("<tr><td>" +
       marko_escapeXml(eleicao.id) +
       "</td><td>" +
       marko_escapeXml(eleicao.titulo) +
