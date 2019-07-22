@@ -5,12 +5,16 @@ const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
 //const methodOverride = require('method-override');
+const pool = require('./pool-factory');
+const connectionMiddleware = require('./connection-midleware');
 
 app.use('/estatico', express.static('src/app/public'));
 
 app.use(bodyParser.urlencoded({
     extended: true
 }));
+
+app.use(connectionMiddleware(pool));
 
 const rotas = require('../app/rotas/rotas');
 rotas(app);

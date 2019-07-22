@@ -15,15 +15,15 @@ var marko_template = module.exports = require("marko/src/html").t(__filename),
 function render(input, out, __component, component, state) {
   var data = input;
 
-  out.w("<html><head><title>Projeto Totaliza</title></head><body>");
+  out.w("<html><head><link rel=\"stylesheet\" type=\"text/css\" href=\"/estatico/css/bootstrap.min.css\"><link rel=\"stylesheet\" type=\"text/css\" href=\"/estatico/css/bootstrap.min.css\"><title>Projeto Totaliza</title></head><body>");
 
   component_globals_tag({}, out);
 
-  out.w("<h1>Bem-vindo ao projeto totaliza.</h1>");
+  out.w("<header>cabeçalho</header><h1>Bem-vindo ao projeto totaliza.</h1><footer>rodapé</footer><script src=\"/estatico/js/jquery-3.2.1.slim.min.js\"></script><script src=\"/estatico/js/popper.min.js\"></script><script src=\"/estatico/js/bootstrap.min.js\"></script>");
 
   init_components_tag({}, out);
 
-  await_reorderer_tag({}, out, __component, "5");
+  await_reorderer_tag({}, out, __component, "12");
 
   out.w("</body></html>");
 }

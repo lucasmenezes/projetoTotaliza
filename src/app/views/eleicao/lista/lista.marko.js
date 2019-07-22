@@ -17,11 +17,11 @@ var marko_template = module.exports = require("marko/src/html").t(__filename),
 function render(input, out, __component, component, state) {
   var data = input;
 
-  out.w("<html><head><meta charset=\"utf-8\"> </head><body>");
+  out.w("<html><head><meta charset=\"utf-8\"> <link rel=\"stylesheet\" type=\"text/css\" href=\"/estatico/css/bootstrap.min.css\"></head><body>");
 
   component_globals_tag({}, out);
 
-  out.w("<div><div><h1>Eleições cadastradas </h1><table><thead><tr><th>ID</th><th>Título</th><th>Data</th><th>Editar</th><th>Remover</th></tr></thead><tbody>");
+  out.w("<div class=\"container\"><div><h1>Eleições cadastradas </h1><table class=\"table table-bordered table-striped\"><thead><tr><th>ID</th><th>Título</th><th>Data</th><th>Editar</th><th>Remover</th></tr></thead><tbody>");
 
   var $for$0 = 0;
 
@@ -37,11 +37,11 @@ function render(input, out, __component, component, state) {
       "</td><td><a href=\"\">Editar</a></td><td><a href=\"\">Remover</a></td></tr>");
   });
 
-  out.w("</tbody></table></div></div> ");
+  out.w("</tbody></table></div></div><script src=\"/estatico/js/jquery-3.2.1.slim.min.js\"></script><script src=\"/estatico/js/popper.min.js\"></script><script src=\"/estatico/js/bootstrap.min.js\"></script> ");
 
   init_components_tag({}, out);
 
-  await_reorderer_tag({}, out, __component, "24");
+  await_reorderer_tag({}, out, __component, "28");
 
   out.w("</body></html>");
 }
