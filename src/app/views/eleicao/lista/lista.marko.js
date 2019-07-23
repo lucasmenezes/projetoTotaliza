@@ -21,7 +21,7 @@ function render(input, out, __component, component, state) {
 
   component_globals_tag({}, out);
 
-  out.w("<div class=\"container\"><div><h1>Eleições cadastradas </h1><table class=\"table table-bordered table-striped\"><thead><tr><th>ID</th><th>Título</th><th>Data</th><th>Editar</th><th>Remover</th></tr></thead><tbody>");
+  out.w("<div class=\"container\"><div><h1>Eleições cadastradas </h1><table class=\"table table-bordered table-striped\"><thead><tr><th>Nome</th><th>Data</th><th>Editar</th><th>Remover</th></tr></thead><tbody>");
 
   var $for$0 = 0;
 
@@ -29,19 +29,17 @@ function render(input, out, __component, component, state) {
     var $keyScope$0 = "[" + (($for$0++) + "]");
 
     out.w("<tr><td>" +
-      marko_escapeXml(eleicao.id) +
-      "</td><td>" +
-      marko_escapeXml(eleicao.titulo) +
+      marko_escapeXml(eleicao.nome) +
       "</td><td>" +
       marko_escapeXml(eleicao.data) +
       "</td><td><a href=\"\">Editar</a></td><td><a href=\"\">Remover</a></td></tr>");
   });
 
-  out.w("</tbody></table></div></div><script src=\"/estatico/js/jquery-3.2.1.slim.min.js\"></script><script src=\"/estatico/js/popper.min.js\"></script><script src=\"/estatico/js/bootstrap.min.js\"></script> ");
+  out.w("</tbody></table></div></div><script src=\"/estatico/js/jquery-3.2.1.slim.min.js\"></script><script src=\"/estatico/js/popper.min.js\"></script><script src=\"/estatico/js/bootstrap.min.js\"></script> <script src=\"https://momentjs.com/downloads/moment.min.js\"></script> ");
 
   init_components_tag({}, out);
 
-  await_reorderer_tag({}, out, __component, "28");
+  await_reorderer_tag({}, out, __component, "27");
 
   out.w("</body></html>");
 }

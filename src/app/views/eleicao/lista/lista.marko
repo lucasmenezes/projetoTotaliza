@@ -10,8 +10,7 @@
                 <table class="table table-bordered table-striped">
                     <thead>
                         <tr>
-                            <th>ID</th>
-                            <th>Título</th>
+                            <th>Nome</th>
                             <th>Data</th>
                             <th>Editar</th>
                             <th>Remover</th>
@@ -19,10 +18,8 @@
                     </thead>
                     <tbody>
                         <for|eleicao| of=data.eleicoes>
-                        <!-- <tr id="eleicao_${eleicao.id}" for (eleicao in data.eleicoes)> -->
                             <tr >
-                                <td>${eleicao.id}</td>
-                                <td>${eleicao.titulo}</td>
+                                <td>${eleicao.nome}</td>
                                 <td>${eleicao.data}</td>
                                 <td><a href="">Editar</a></td>
                                 <td><a href="">Remover</a></td>
@@ -32,8 +29,9 @@
                 </table>
             </div>
         </div>
+        
         <script src="/estatico/js/jquery-3.2.1.slim.min.js"></script>
         <script src="/estatico/js/popper.min.js"></script>
-        <script src="/estatico/js/bootstrap.min.js"></script>        
+        <script src="/estatico/js/bootstrap.min.js"></script>               
     </body>
 </html>

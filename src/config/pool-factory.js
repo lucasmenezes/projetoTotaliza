@@ -2,9 +2,10 @@ const mysql = require('mysql');
 const pool = mysql.createPool({
        
         host: "localhost",
-        user: "",
+        user: "root",
         password: "",
-        database: ""
+        database: "totaliza",
+        dateStrings:true,
 });
 
 process.on('SIGINT', () => 

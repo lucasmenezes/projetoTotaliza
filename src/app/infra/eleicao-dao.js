@@ -7,9 +7,9 @@ class EleicaoDao {
     lista() {
         console.log('lista eleições dao');
         return new Promise((resolve, reject) => 
-            this._connection.query('select * from livros', (err, livros) => {
+            this._connection.query('select * from eleicao', (err, eleicoes) => {
                 if(err) return reject(err);
-                resolve(livros);
+                resolve(eleicoes);
             })
         );
         /*return new Promise(function(resolve, reject){
