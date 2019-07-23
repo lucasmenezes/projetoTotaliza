@@ -35,11 +35,11 @@ function render(input, out, __component, component, state) {
       "</td><td><a href=\"\">Editar</a></td><td><a href=\"\">Remover</a></td></tr>");
   });
 
-  out.w("</tbody></table></div></div><script src=\"/estatico/js/jquery-3.2.1.slim.min.js\"></script><script src=\"/estatico/js/popper.min.js\"></script><script src=\"/estatico/js/bootstrap.min.js\"></script> <script src=\"https://momentjs.com/downloads/moment.min.js\"></script> ");
+  out.w("</tbody></table></div></div><script src=\"/estatico/js/jquery-3.2.1.slim.min.js\"></script><script src=\"/estatico/js/popper.min.js\"></script><script src=\"/estatico/js/bootstrap.min.js\"></script> ");
 
   init_components_tag({}, out);
 
-  await_reorderer_tag({}, out, __component, "27");
+  await_reorderer_tag({}, out, __component, "26");
 
   out.w("</body></html>");
 }

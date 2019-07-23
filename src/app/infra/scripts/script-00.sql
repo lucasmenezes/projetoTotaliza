@@ -1,5 +1,7 @@
 CREATE DATABASE `totaliza` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */;
 
+USE totaliza;
+
 CREATE TABLE `eleicao` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `nome` varchar(255) DEFAULT NULL,
