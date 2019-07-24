@@ -4,8 +4,11 @@ class EleicaoControlador {
 
     static rotas() {
         return {
-            lista: '/eleicoes',
-            detalhe: '/eleicoes/:id'
+            eleicao: '/eleicoes',
+            detalhe: '/eleicoes/:id',
+            form: '',
+            partidos: '/eleicoes/:id/partidos',
+            candidatos: '/eleicoes/:id/candidatos'
         };
     }
 
@@ -18,7 +21,7 @@ class EleicaoControlador {
         };
     }
 
-    detalhe() {
+    detalha() {
         return function(req, res) {
             const id = req.params.id;
             const eleicaoDao = new EleicaoDao(req.connection);
@@ -28,6 +31,48 @@ class EleicaoControlador {
                 .catch(erro => console.log(erro));
             
         };
+    }
+
+    //testar
+    inclui() {
+        return function(req, res) {
+            const eleicao = req.params.eleicao;
+            const eleicaoDao = new EleicaoControlador(req.connection);
+            eleicaoDao.inclui(eleicao)
+                .then(res.redirect(rotas().eleicao))
+                .catch(erro => console.log(erro));
+        };
+    }
+
+    //testar
+    atualiza() {
+        return function(req, res) {
+            const eleicao = req.params.eleicao;
+            const eleicaoDao = new EleicaoDao(connection);
+            eleicaoDao.atualiza(eleicao)
+                .then(res.redirect(rotas().eleicao))
+                .catch(erro => console.log(erro));
+        };
+    }
+
+    //testar
+    deleta() {
+        return function(req, res) {
+            const id = req.params.id;
+            const eleicaoDao = new EleicaoDao(req.connection);
+
+            eleicaoDao.deleta(id)
+                .then()
+                .catch(erro => console.log(erro));
+        };
+    }
+
+    incluiCandidatos() {
+
+    }
+
+    excluiCandidatos() {
+
     }
 }
 

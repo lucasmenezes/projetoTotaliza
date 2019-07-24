@@ -30,11 +30,11 @@ function render(input, out, __component, component, state) {
     marko_escapeXml(data.eleicao.tipo) +
     " <br> Status: " +
     marko_escapeXml(data.eleicao.status) +
-    " <br></div></div></div><div class=\"card\"><div class=\"card-header\" id=\"headingTwo\"><h2 class=\"mb-0\"><button class=\"btn btn-link collapsed\" type=\"button\" data-toggle=\"collapse\" data-target=\"#collapseTwo\" aria-expanded=\"false\" aria-controls=\"collapseTwo\">Partidos & coligações</button></h2></div><div id=\"collapseTwo\" class=\"collapse\" aria-labelledby=\"headingTwo\" data-parent=\"#accordionExample\"><div class=\"card-body\">Em breve...</div></div></div><div class=\"card\"><div class=\"card-header\" id=\"headingThree\"><h2 class=\"mb-0\"><button class=\"btn btn-link collapsed\" type=\"button\" data-toggle=\"collapse\" data-target=\"#collapseThree\" aria-expanded=\"false\" aria-controls=\"collapseThree\">Candidatos</button></h2></div><div id=\"collapseThree\" class=\"collapse\" aria-labelledby=\"headingThree\" data-parent=\"#accordionExample\"><div class=\"card-body\">Em breve...</div></div></div></div></div></main><script src=\"/estatico/js/jquery-3.4.1.min.js\"></script><script src=\"/estatico/js/popper.min.js\"></script><script src=\"/estatico/js/bootstrap.min.js\"></script>");
+    " <br></div></div></div><div class=\"card\"><div class=\"card-header\" id=\"headingTwo\"><h2 class=\"mb-0\"><button class=\"btn btn-link collapsed\" type=\"button\" data-toggle=\"collapse\" data-target=\"#collapseTwo\" aria-expanded=\"false\" aria-controls=\"collapseTwo\">Partidos & coligações</button></h2></div><div id=\"collapseTwo\" class=\"collapse\" aria-labelledby=\"headingTwo\" data-parent=\"#accordionExample\"><div class=\"card-body\">Em breve...</div></div></div><div class=\"card\"><div class=\"card-header\" id=\"headingThree\"><h2 class=\"mb-0\"><button class=\"btn btn-link collapsed\" type=\"button\" data-toggle=\"collapse\" data-target=\"#collapseThree\" aria-expanded=\"false\" aria-controls=\"collapseThree\">Candidatos</button></h2></div><div id=\"collapseThree\" class=\"collapse\" aria-labelledby=\"headingThree\" data-parent=\"#accordionExample\"><div class=\"card-body\">Em breve...</div></div></div></div></div><button class=\"btn btn-danger\" type=\"button\">Totalizar</button></main><script src=\"/estatico/js/jquery-3.4.1.min.js\"></script><script src=\"/estatico/js/popper.min.js\"></script><script src=\"/estatico/js/bootstrap.min.js\"></script>");
 
   init_components_tag({}, out);
 
-  await_reorderer_tag({}, out, __component, "60");
+  await_reorderer_tag({}, out, __component, "61");
 
   out.w("</body></html>");
 }
