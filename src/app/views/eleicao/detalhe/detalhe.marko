@@ -4,7 +4,6 @@
       <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
       <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
       <meta name="description" content="">   
-      
       <title>Projeto Totaliza</title>
 
       <link rel="stylesheet" type="text/css" href="/estatico/css/bootstrap.min.css">     
@@ -46,8 +45,54 @@
 
     <main role="main" class="container">
         <div class="starter-template">
-            
-            <p>Bem-vindo ao projeto totaliza. </p>    
+            <div class="accordion" id="accordionExample">
+                <div class="card">
+                    <div class="card-header" id="headingOne">
+                        <h2 class="mb-0">
+                            <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                            Eleição
+                            </button>
+                        </h2>
+                    </div>
+                    <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+                        <div class="card-body">
+                            Eleição: ${data.eleicao.nome} <br />
+                            Descrição: ${data.eleicao.descricao} <br />
+                            Data: ${data.eleicao.data} <br />
+                            Tipo: ${data.eleicao.tipo} <br />
+                            Status: ${data.eleicao.status} <br />
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-header" id="headingTwo">
+                        <h2 class="mb-0">
+                            <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                            Partidos & coligações
+                            </button>
+                        </h2>
+                    </div>
+                    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
+                        <div class="card-body">
+                            Em breve...
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-header" id="headingThree">
+                        <h2 class="mb-0">
+                            <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                            Candidatos
+                            </button>
+                        </h2>
+                    </div>
+                    <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
+                        <div class="card-body">
+                            Em breve...
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </main>
     <script src="/estatico/js/jquery-3.4.1.min.js"></script>
@@ -55,5 +100,3 @@
     <script src="/estatico/js/bootstrap.min.js"></script>
   </body>
 </html>
-
-

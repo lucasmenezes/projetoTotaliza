@@ -24,6 +24,18 @@ class EleicaoDao {
         });*/
         
     }
+
+    buscaPorId(id) {
+        return new Promise((resolve, reject) => {
+            this._connection.query('select * from eleicao where id = ?',
+            [id],
+            (erro, eleicao) => {
+                if (erro) return reject('Não foi possível recuperar a eleição desejada.');
+                console.log(eleicao[0]);
+                return resolve(eleicao[0]);             
+            });
+        });
+    }
 }
 
 module.exports = EleicaoDao;
