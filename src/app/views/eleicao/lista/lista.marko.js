@@ -35,16 +35,16 @@ function render(input, out, __component, component, state) {
       marko_attr("href", "/eleicoes/" + eleicao.id) +
       ">" +
       marko_escapeXml(eleicao.nome) +
-      "</a></td><td>" +
+      "</a></td><td class=\"dataEleicao\">" +
       marko_escapeXml(eleicao.data) +
       "</td><td><a href=\"\">Editar</a></td><td><a href=\"\">Remover</a></td></tr>");
   });
 
-  out.w("</tbody></table></div></main><script src=\"/estatico/js/jquery-3.4.1.min.js\"></script><script src=\"/estatico/js/popper.min.js\"></script><script src=\"/estatico/js/bootstrap.min.js\"></script>");
+  out.w("</tbody></table></div></main><script src=\"/estatico/js/jquery-3.4.1.min.js\"></script><script src=\"/estatico/js/popper.min.js\"></script><script src=\"/estatico/js/bootstrap.min.js\"></script><script>\r\n        console.log($('td.dataEleicao').text());\r\n/*\r\n        var arr = $.map($('.dataEleicao'), function (el) { \r\n            console.log(el);\r\n            return el; \r\n        });\r\n*/\r\n    </script>");
 
   init_components_tag({}, out);
 
-  await_reorderer_tag({}, out, __component, "55");
+  await_reorderer_tag({}, out, __component, "56");
 
   out.w("</body></html>");
 }

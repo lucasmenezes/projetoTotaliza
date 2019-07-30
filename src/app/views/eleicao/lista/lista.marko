@@ -62,7 +62,7 @@
                         <for|eleicao| of=data.eleicoes>                     
                                 <tr>
                                     <td><a href=`/eleicoes/${eleicao.id}`>${eleicao.nome}</a></td>
-                                    <td>${eleicao.data}</td>
+                                    <td class="dataEleicao">${eleicao.data}</td>
                                     <td><a href="">Editar</a></td>
                                     <td><a href="">Remover</a></td>
                                 </tr>
@@ -74,5 +74,14 @@
     <script src="/estatico/js/jquery-3.4.1.min.js"></script>
     <script src="/estatico/js/popper.min.js"></script>
     <script src="/estatico/js/bootstrap.min.js"></script>
+    <script>
+        console.log($('td.dataEleicao').text());
+/*
+        var arr = $.map($('.dataEleicao'), function (el) { 
+            console.log(el);
+            return el; 
+        });
+*/
+    </script>
   </body>
 </html>
