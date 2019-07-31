@@ -9,7 +9,7 @@
       <link rel="stylesheet" type="text/css" href="/estatico/css/bootstrap.min.css">     
       <link rel="stylesheet" type="text/css" href="/estatico/css/estilo.css">
     </head>
-  <body>
+    <body>
         <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
             <a class="navbar-brand" href="">Projeto Totaliza</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
@@ -41,63 +41,99 @@
                     <button class="btn btn-secondary my-2 my-sm-0" type="submit">Buscar</button>
                 </form>
             </div>
-    </nav>
+        </nav>
 
-    <main role="main" class="container">
-        <div class="starter-template">
-            <div class="accordion" id="accordionExample">
-                <div class="card">
-                    <div class="card-header" id="headingOne">
-                        <h2 class="mb-0">
-                            <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                            Eleição
-                            </button>
-                        </h2>
-                    </div>
-                    <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
-                        <div class="card-body">
-                            Eleição: ${data.eleicao.nome} <br />
-                            Descrição: ${data.eleicao.descricao} <br />
-                            Data: ${data.eleicao.data} <br />
-                            Tipo: ${data.eleicao.tipo} <br />
-                            Status: ${data.eleicao.status} <br />
+        <main role="main" class="container">
+            <div class="starter-template">
+                <div class="accordion" id="accordionExample">
+                    <div class="card">
+                        <div class="card-header" id="headingOne">
+                            <h2 class="mb-0">
+                                <button class="btn" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                    <h4>Eleição</h4>
+                                </button>
+                            </h2>
+                        </div>
+                        <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col">
+                                        <strong>Eleição:</strong> ${data.eleicao.nome}
+                                    </div>
+                                    <div class="col">
+                                        <strong>UF:</strong> ${data.eleicao.uf}
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col">
+                                        <strong>Data:</strong> ${data.eleicao.data}
+                                    </div>
+                                    <div class="col">
+                                        <strong>Cargo:</strong> ${data.eleicao.cargo_nome}
+                                    </div>
+                                    <div class="col">
+                                        <strong>Tipo:</strong> ${data.eleicao.tipo} 
+                                    </div>
+                                </div>                                              
+                                <div class="row">
+                                    <div class="col">
+                                        <strong>Quantidade de vagas:</strong> ${data.eleicao.quantidade_vagas}
+                                    </div>
+                                    <div class="col">
+                                        <strong>Votos Nulos:</strong> ${data.eleicao.votos_nulos}
+                                    </div>
+                                    <div class="col">
+                                        <strong>Votos Nulos:</strong> ${data.eleicao.votos_brancos}
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col">
+                                        <strong>Descrição:          </strong> ${data.eleicao.descricao}
+                                    </div>
+                                    
+                                </div>
+                                <div class="row">
+                                    <div class="col">
+                                        <strong>Status:</strong> ${data.eleicao.status} 
+                                    </div>
+                                </div>                                                      
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="card">
-                    <div class="card-header" id="headingTwo">
-                        <h2 class="mb-0">
-                            <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                            Partidos & coligações
-                            </button>
-                        </h2>
-                    </div>
-                    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
-                        <div class="card-body">
-                            Em breve...
+                    <div class="card">
+                        <div class="card-header" id="headingTwo">
+                            <h2 class="mb-0">
+                                <button class="btn collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                    <h4>Partidos & coligações</h4>
+                                </button>
+                            </h2>
+                        </div>
+                        <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
+                            <div class="card-body">
+                                Em breve...
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="card">
-                    <div class="card-header" id="headingThree">
-                        <h2 class="mb-0">
-                            <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                            Candidatos
-                            </button>
-                        </h2>
-                    </div>
-                    <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
-                        <div class="card-body">
-                            Em breve...
+                    <div class="card">
+                        <div class="card-header" id="headingThree">
+                            <h2 class="mb-0">
+                                <button class="btn collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                    <h4>Candidatos</h4>
+                                </button>
+                            </h2>
+                        </div>
+                        <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
+                            <div class="card-body">
+                                Em breve...
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-        <button class="btn btn-danger" type="button">Totalizar</button>
-    </main>
-    <script src="/estatico/js/jquery-3.4.1.min.js"></script>
-    <script src="/estatico/js/popper.min.js"></script>
-    <script src="/estatico/js/bootstrap.min.js"></script>
-  </body>
+            <button class="btn btn-danger" type="button">Totalizar</button>
+        </main>
+        <script src="/estatico/js/jquery-3.4.1.min.js"></script>
+        <script src="/estatico/js/popper.min.js"></script>
+        <script src="/estatico/js/bootstrap.min.js"></script>
+    </body>
 </html>

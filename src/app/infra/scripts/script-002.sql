@@ -14,7 +14,7 @@ INNER JOIN ano_base ON cargo_ano_base.ano_base_id = ano_base.id
 WHERE cargo.nome = 'Vereador' AND ano_base.ano = 2016));
 
 INSERT INTO `totaliza`.`eleicao` (`nome`, `descricao`, `tipo`, `data`, `status`, `votos_nulos`, `votos_brancos`, `uf`, `quantidade_vagas`, `cargo_ano_base_id`)
-VALUES ('Eleição Municipal de Aguaí - Cargo Vereador', 'Eleição Municipal de Aguaí - Cargo Vereador', 1,  '2016-10-02', 1313, 930, 13, 'SP', 9, (SELECT cargo_ano_base.id from cargo_ano_base 
+VALUES ('Eleição Municipal de Aguaí - Cargo Vereador', 'Eleição Municipal de Aguaí - Cargo Vereador', 1,  '2016-10-02', 1, 930, 13, 'SP', 9, (SELECT cargo_ano_base.id from cargo_ano_base 
 INNER JOIN cargo ON cargo_ano_base.cargo_id = cargo.id
 INNER JOIN ano_base ON cargo_ano_base.ano_base_id = ano_base.id
 WHERE cargo.nome = 'Vereador' AND ano_base.ano = 2016));
