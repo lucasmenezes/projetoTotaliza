@@ -15,7 +15,6 @@ class EleicaoDao {
 
     buscaPorId(id) {
         return new Promise((resolve, reject) => {
-            //this._connection.query('select * from eleicao where id = ?',
             this._connection.query(
                  'SELECT e.*, c.nome as cargo_nome FROM `totaliza`.`eleicao` AS e ' 
             +    'INNER JOIN `totaliza`.`cargo_ano_base` AS cab ON e.cargo_ano_base_id = cab.id '
@@ -24,7 +23,6 @@ class EleicaoDao {
             [id],
             (erro, eleicao) => {
                 if (erro) return reject('Não foi possível recuperar a eleição desejada.');
-                console.log(eleicao[0]);
                 return resolve(eleicao[0]);             
             });
         });

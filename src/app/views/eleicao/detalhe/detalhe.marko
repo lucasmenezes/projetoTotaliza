@@ -8,6 +8,7 @@
 
       <link rel="stylesheet" type="text/css" href="/estatico/css/bootstrap.min.css">     
       <link rel="stylesheet" type="text/css" href="/estatico/css/estilo.css">
+      <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     </head>
     <body>
         <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
@@ -45,18 +46,19 @@
 
         <main role="main" class="container">
             <div class="starter-template">
-                <div class="accordion" id="accordionExample">
+                <div id="sanfona1">
                     <div class="card">
-                        <div class="card-header" id="headingOne">
-                            <h2 class="mb-0">
-                                <button class="btn" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                                    <h4>Eleição</h4>
-                                </button>
-                            </h2>
+                        <div class="card-header" id="cabecalho-sanfona1">
+                        <h5 class="mb-0">
+                            <button class="btn" data-toggle="collapse" data-target="#corpo-sanfona1" aria-expanded="false" aria-controls="corpo-sanfona1">
+                                <h4>eleição</h4>
+                            </button>
+                        </h5>
                         </div>
-                        <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
-                            <div class="card-body">
-                                <div class="row">
+
+                        <div id="corpo-sanfona1" class="collapse" aria-labelledby="cabecalho-sanfona1" data-parent="#sanfona1">
+                        <div class="card-body">
+                            <div class="row">
                                     <div class="col">
                                         <strong>Eleição:</strong> ${data.eleicao.nome}
                                     </div>
@@ -96,41 +98,98 @@
                                     <div class="col">
                                         <strong>Status:</strong> ${data.eleicao.status} 
                                     </div>
-                                </div>                                                      
+                                </div> 
+                        </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="sanfona2">
+                    <div class="card">
+                        <div class="card-header" id="cabecalho-sanfona2">
+                        <h5 class="mb-0">
+                            <button class="btn" data-toggle="collapse" data-target="#corpo-sanfona2" aria-expanded="false" aria-controls="corpo-sanfona2">
+                                <h4>partidos & coligações</h4>
+                            </button>
+                        </h5>
+                        </div>
+
+                        <div id="corpo-sanfona2" class="collapse" aria-labelledby="cabecalho-sanfona2" data-parent="#sanfona2">
+                            <div class="card-body">
+                                <table class="table">
+                                        <thead class="thead-dark">
+                                            <tr>
+                                                <th scope="col">n°</th>
+                                                <th scope="col">sigla</th>
+                                                <th scope="col">nome</th>
+                                                <th scope="col">coligação</th>
+                                                <th scope="col">votos (legenda)</th>
+                                                <th scope="col">ações</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <for|partido| of=data.partidos>                     
+                                                <tr>
+                                                    <td>${partido.numero}</td>
+                                                    <td class="text-center">${partido.sigla}</td>
+                                                    <td>${partido.nome}</td>
+                                                    <td>${partido.nome_coligacao ? partido.nome_coligacao : "-"}</td>
+                                                    <td class="text-center">${partido.quantidade_votos}</td>
+                                                    <td class="text-center">
+                                                        <i class="material-icons">how_to_vote</i>
+                                                    </td>
+                                                </tr>
+                                            </for>
+                                        </tbody>
+                                </table>    
                             </div>
                         </div>
                     </div>
+                </div>
+
+                <div id="sanfona3">
                     <div class="card">
-                        <div class="card-header" id="headingTwo">
-                            <h2 class="mb-0">
-                                <button class="btn collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                                    <h4>Partidos & coligações</h4>
-                                </button>
-                            </h2>
+                        <div class="card-header" id="cabecalho-sanfona2">
+                        <h5 class="mb-0">
+                            <button class="btn" data-toggle="collapse" data-target="#corpo-sanfona3" aria-expanded="false" aria-controls="corpo-sanfona3">
+                                <h4>candidatos</h4>
+                            </button>
+                        </h5>
                         </div>
-                        <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
+
+                        <div id="corpo-sanfona3" class="collapse false" aria-labelledby="cabecalho-sanfona3" data-parent="#sanfona3">
                             <div class="card-body">
-                                Em breve...
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card">
-                        <div class="card-header" id="headingThree">
-                            <h2 class="mb-0">
-                                <button class="btn collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                                    <h4>Candidatos</h4>
-                                </button>
-                            </h2>
-                        </div>
-                        <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
-                            <div class="card-body">
-                                Em breve...
+                                <table class="table">
+                                    <thead class="thead-dark">
+                                        <tr>
+                                            <th scope="col">n°</th>
+                                            <th scope="col">sigla</th>
+                                            <th scope="col">nome de urna</th>
+                                            <th scope="col">data de nascimento</th>
+                                            <th scope="col">votos</th>
+                                            <th scope="col">ações</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <for|candidato| of=data.candidatos>                     
+                                            <tr>
+                                                <td>${candidato.numero}</td>
+                                                <td>${candidato.sigla}</td>
+                                                <td title=`${candidato.nome}`>${candidato.nome_urna}</td>
+                                                <td>${candidato.data_nascimento}</td>
+                                                <td class="text-center">${candidato.quantidade_votos}</td>
+                                                <td class="text-center">
+                                                    <i class="material-icons">how_to_vote</i>
+                                                </td>
+                                            </tr>
+                                        </for>
+                                    </tbody>
+                                </table>    
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <button class="btn btn-danger" type="button">Totalizar</button>
         </main>
         <script src="/estatico/js/jquery-3.4.1.min.js"></script>
         <script src="/estatico/js/popper.min.js"></script>

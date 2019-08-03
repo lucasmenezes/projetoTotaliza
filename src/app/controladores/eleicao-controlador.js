@@ -1,4 +1,6 @@
 const EleicaoDao = require('../infra/eleicao-dao');
+const PartidoDao = require('../infra/partido-dao');
+const CandidatoDao = require('../infra/candidato-dao');
 
 class EleicaoControlador {
 
@@ -27,9 +29,19 @@ class EleicaoControlador {
             const eleicaoDao = new EleicaoDao(req.connection);
             
             eleicaoDao.buscaPorId(id)
-                .then(eleicao => res.marko(require('../views/eleicao/detalhe/detalhe.marko'), {eleicao}))
+                .then(eleicao => {
+                    const partidoDao = new PartidoDao(req.connection);
+                    partidoDao.listaPorIdEleicao(id)
+                        .then(partidos => {
+                            const candidatoDao = new CandidatoDao(req.connection);
+                            candidatoDao.listaPorIdEleicao(id)
+                                .then(candidatos => res.marko(require('../views/eleicao/detalhe/detalhe.marko'), {eleicao, partidos, candidatos}))
+                                .catch(erro => console.log(erro));
+                        })
+                        .catch(erro => console.log(erro));
+                })
                 .catch(erro => console.log(erro));
-            
+         
         };
     }
 

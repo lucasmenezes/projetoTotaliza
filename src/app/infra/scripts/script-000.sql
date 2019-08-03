@@ -12,7 +12,7 @@ USE `totaliza`;
 /*
 DROP TABLE votacao;
 DROP TABLE candidato;
-DROP TABLE partido_coligacao_eleicao;
+DROP TABLE partido_eleicao;
 DROP TABLE partido_coligacao;
 DROP TABLE coligacao;
 DROP TABLE partido;
