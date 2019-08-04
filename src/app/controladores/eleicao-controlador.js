@@ -35,7 +35,11 @@ class EleicaoControlador {
                         .then(partidos => {
                             const candidatoDao = new CandidatoDao(req.connection);
                             candidatoDao.listaPorIdEleicao(id)
-                                .then(candidatos => res.marko(require('../views/eleicao/detalhe/detalhe.marko'), {eleicao, partidos, candidatos}))
+                                //.then(candidatos => res.marko(require('../views/eleicao/detalhe/detalhe.marko'), {eleicao, partidos, candidatos}))
+                                .then(function(candidatos) {
+                                    console.log({eleicao, partidos, candidatos});
+                                    res.marko(require('../views/eleicao/detalhe/detalhe.marko'), {eleicao, partidos, candidatos});
+                                })
                                 .catch(erro => console.log(erro));
                         })
                         .catch(erro => console.log(erro));

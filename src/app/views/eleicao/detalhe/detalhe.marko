@@ -57,53 +57,29 @@
                         </div>
 
                         <div id="corpo-sanfona1" class="collapse" aria-labelledby="cabecalho-sanfona1" data-parent="#sanfona1">
-                        <div class="card-body">
-                            <div class="row">
-                                    <div class="col">
-                                        <strong>Eleição:</strong> ${data.eleicao.nome}
-                                    </div>
-                                    <div class="col">
-                                        <strong>UF:</strong> ${data.eleicao.uf}
-                                    </div>
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-8"><strong>Eleição: </strong><span class="text-capitalize">${data.eleicao.nome}</span> - <span class="text-capitalize">${data.eleicao.uf}</span></div>
+                                    <div class="col-4"><strong>Cargo: </strong><span class="text-capitalize">${data.eleicao.cargo_nome}</span></div>
                                 </div>
-                                <div class="row">
-                                    <div class="col">
-                                        <strong>Data:</strong> ${data.eleicao.data}
+                                <div class="row">    
+                                    <div class="col-4"><strong>Data: </strong><span class="text-capitalize">${data.eleicao.data}</span></div>
+                                    <div class="col-4"><strong>Vagas: </strong> ${data.eleicao.quantidade_vagas} <i class="material-icons align-middle">edit</i></div>
+                                    <div class="col-4"><strong>Tipo: </strong><span class="text-capitalize">${data.eleicao.tipo}</span></div>
+                                </div>                                                  
+                                    <div class="row">
+                                        <div class="col-4"><strong>Votos nulos: </strong> ${data.eleicao.votos_nulos} <i class="material-icons align-middle">edit</i></div>
+                                        <div class="col-4"><strong>Votos brancos: </strong> ${data.eleicao.votos_brancos} <i class="material-icons align-middle">edit</i></div>
+                                        <div class="col-4"><strong>Status:</strong> ${data.eleicao.status}</div>
                                     </div>
-                                    <div class="col">
-                                        <strong>Cargo:</strong> ${data.eleicao.cargo_nome}
-                                    </div>
-                                    <div class="col">
-                                        <strong>Tipo:</strong> ${data.eleicao.tipo} 
-                                    </div>
-                                </div>                                              
-                                <div class="row">
-                                    <div class="col">
-                                        <strong>Quantidade de vagas:</strong> ${data.eleicao.quantidade_vagas}
-                                    </div>
-                                    <div class="col">
-                                        <strong>Votos Nulos:</strong> ${data.eleicao.votos_nulos}
-                                    </div>
-                                    <div class="col">
-                                        <strong>Votos Nulos:</strong> ${data.eleicao.votos_brancos}
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col">
-                                        <strong>Descrição:          </strong> ${data.eleicao.descricao}
-                                    </div>
-                                    
-                                </div>
-                                <div class="row">
-                                    <div class="col">
-                                        <strong>Status:</strong> ${data.eleicao.status} 
-                                    </div>
-                                </div> 
-                        </div>
+                                    <div class="row">
+                                        
+                                    </div> 
+                            </div>
                         </div>
                     </div>
                 </div>
-
+                <br />
                 <div id="sanfona2">
                     <div class="card">
                         <div class="card-header" id="cabecalho-sanfona2">
@@ -116,37 +92,42 @@
 
                         <div id="corpo-sanfona2" class="collapse" aria-labelledby="cabecalho-sanfona2" data-parent="#sanfona2">
                             <div class="card-body">
-                                <table class="table">
-                                        <thead class="thead-dark">
-                                            <tr>
-                                                <th scope="col">n°</th>
-                                                <th scope="col">sigla</th>
-                                                <th scope="col">nome</th>
-                                                <th scope="col">coligação</th>
-                                                <th scope="col">votos (legenda)</th>
-                                                <th scope="col">ações</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <for|partido| of=data.partidos>                     
+                                <if(data.partidos && data.partidos.length > 0)>
+                                    <table class="table">
+                                            <thead class="thead-dark">
                                                 <tr>
-                                                    <td>${partido.numero}</td>
-                                                    <td class="text-center">${partido.sigla}</td>
-                                                    <td>${partido.nome}</td>
-                                                    <td>${partido.nome_coligacao ? partido.nome_coligacao : "-"}</td>
-                                                    <td class="text-center">${partido.quantidade_votos}</td>
-                                                    <td class="text-center">
-                                                        <i class="material-icons">how_to_vote</i>
-                                                    </td>
+                                                    <th scope="col">n°</th>
+                                                    <th scope="col">sigla</th>
+                                                    <th scope="col">nome</th>
+                                                    <th scope="col">coligação</th>
+                                                    <th scope="col">votos (legenda)</th>
+                                                    <th scope="col">ações</th>
                                                 </tr>
-                                            </for>
-                                        </tbody>
-                                </table>    
+                                            </thead>
+                                            <tbody>
+                                                <for|partido| of=data.partidos>                     
+                                                    <tr>
+                                                        <td>${partido.numero}</td>
+                                                        <td class="text-center">${partido.sigla}</td>
+                                                        <td>${partido.nome}</td>
+                                                        <td>${partido.nome_coligacao ? partido.nome_coligacao : "-"}</td>
+                                                        <td class="text-center">${partido.quantidade_votos}</td>
+                                                        <td class="text-center">
+                                                            <i class="material-icons">how_to_vote</i>
+                                                        </td>
+                                                    </tr>
+                                                </for>
+                                            </tbody>
+                                    </table>    
+                                </if>
+                                <else>
+                                    <h4><span class="badge badge-danger">Em breve</span></h4>
+                                </else>
                             </div>
                         </div>
                     </div>
                 </div>
-
+                <br />
                 <div id="sanfona3">
                     <div class="card">
                         <div class="card-header" id="cabecalho-sanfona2">
@@ -159,36 +140,47 @@
 
                         <div id="corpo-sanfona3" class="collapse false" aria-labelledby="cabecalho-sanfona3" data-parent="#sanfona3">
                             <div class="card-body">
-                                <table class="table">
-                                    <thead class="thead-dark">
-                                        <tr>
-                                            <th scope="col">n°</th>
-                                            <th scope="col">sigla</th>
-                                            <th scope="col">nome de urna</th>
-                                            <th scope="col">data de nascimento</th>
-                                            <th scope="col">votos</th>
-                                            <th scope="col">ações</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <for|candidato| of=data.candidatos>                     
+                                <if(data.candidatos && data.candidatos.length > 0)>
+                                    <table class="table">
+                                        <thead class="thead-dark">
                                             <tr>
-                                                <td>${candidato.numero}</td>
-                                                <td>${candidato.sigla}</td>
-                                                <td title=`${candidato.nome}`>${candidato.nome_urna}</td>
-                                                <td>${candidato.data_nascimento}</td>
-                                                <td class="text-center">${candidato.quantidade_votos}</td>
-                                                <td class="text-center">
-                                                    <i class="material-icons">how_to_vote</i>
-                                                </td>
+                                                <th scope="col">n°</th>
+                                                <th scope="col">sigla</th>
+                                                <th scope="col">nome de urna</th>
+                                                <th scope="col">data de nascimento</th>
+                                                <th scope="col">votos</th>
+                                                <th scope="col">ações</th>
                                             </tr>
-                                        </for>
-                                    </tbody>
-                                </table>    
+                                        </thead>
+                                        <tbody>
+                                            <for|candidato| of=data.candidatos>                     
+                                                <tr>
+                                                    <td>${candidato.numero}</td>
+                                                    <td>${candidato.sigla}</td>
+                                                    <td title=`${candidato.nome}`>${candidato.nome_urna}</td>
+                                                    <td>${candidato.data_nascimento}</td>
+                                                    <td class="text-center">${candidato.quantidade_votos}</td>
+                                                    <td class="text-center">
+                                                        <i class="material-icons">how_to_vote</i>
+                                                        <i class="material-icons">delete</i>
+                                                    </td>
+                                                </tr>
+                                            </for>
+                                        </tbody>
+                                    </table>
+                                </if>
+                                <else>
+                                    <h4><span class="badge badge-danger">Em breve</span></h4>
+                                </else>    
                             </div>
                         </div>
                     </div>
                 </div>
+                <br />
+                <div class="text-right">
+                    <button type="button" class="btn btn-danger btn-lg"><i class="material-icons align-middle">warning</i> Totalizar</button>
+                </div>
+                
             </div>
         </main>
         <script src="/estatico/js/jquery-3.4.1.min.js"></script>

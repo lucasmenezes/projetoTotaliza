@@ -22,7 +22,7 @@ class CandidatoDao {
                 + 'INNER JOIN partido AS p ON pe.partido_id = p.id '
                 + 'LEFT JOIN votacao AS v ON c.id = v.candidato_id '
                 + 'WHERE pe.eleicao_id = ? '
-                + 'ORDER BY v.quantidade_votos DESC', 
+                + 'ORDER BY v.quantidade_votos DESC, c.data_nascimento ASC', 
                 [idEleicao],
             (erro, candidatos) => {
                 if (erro) return reject(erro);
