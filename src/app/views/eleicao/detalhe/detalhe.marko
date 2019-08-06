@@ -67,14 +67,11 @@
                                     <div class="col-4"><strong>Vagas: </strong> ${data.eleicao.quantidade_vagas} <i class="material-icons align-middle">edit</i></div>
                                     <div class="col-4"><strong>Tipo: </strong><span class="text-capitalize">${data.eleicao.tipo}</span></div>
                                 </div>                                                  
-                                    <div class="row">
-                                        <div class="col-4"><strong>Votos nulos: </strong> ${data.eleicao.votos_nulos} <i class="material-icons align-middle">edit</i></div>
-                                        <div class="col-4"><strong>Votos brancos: </strong> ${data.eleicao.votos_brancos} <i class="material-icons align-middle">edit</i></div>
-                                        <div class="col-4"><strong>Status:</strong> ${data.eleicao.status}</div>
-                                    </div>
-                                    <div class="row">
-                                        
-                                    </div> 
+                                <div class="row">
+                                    <div class="col-4"><strong>Votos nulos: </strong> ${data.eleicao.votos_nulos} <i class="material-icons align-middle">edit</i></div>
+                                    <div class="col-4"><strong>Votos brancos: </strong> ${data.eleicao.votos_brancos} <i class="material-icons align-middle">edit</i></div>
+                                    <div class="col-4"><strong>Status:</strong> ${data.eleicao.status}</div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -177,10 +174,11 @@
                     </div>
                 </div>
                 <br />
-                <div class="text-right">
-                    <button type="button" class="btn btn-danger btn-lg"><i class="material-icons align-middle">warning</i> Totalizar</button>
-                </div>
-                
+                <form action=`/eleicoes/${data.eleicao.id}/resultado` method="post">
+                    <div class="text-right">
+                        <button type="submit" class="btn btn-danger btn-lg"><i class="material-icons align-middle">warning</i> Totalizar</button>
+                    </div>
+                </form>
             </div>
         </main>
         <script src="/estatico/js/jquery-3.4.1.min.js"></script>

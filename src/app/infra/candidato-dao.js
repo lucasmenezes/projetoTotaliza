@@ -5,7 +5,6 @@ class CandidatoDao {
     }
 
     listaPorIdEleicao(idEleicao) {
-        console.log(idEleicao);
         return new Promise((resolve, reject) => {
             this._connection.query(
                  'SELECT  c.id as id, '

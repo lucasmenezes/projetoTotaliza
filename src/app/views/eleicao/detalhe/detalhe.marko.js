@@ -40,7 +40,7 @@ function render(input, out, __component, component, state) {
     marko_escapeXml(data.eleicao.votos_brancos) +
     " <i class=\"material-icons align-middle\">edit</i></div><div class=\"col-4\"><strong>Status:</strong> " +
     marko_escapeXml(data.eleicao.status) +
-    "</div></div><div class=\"row\"></div> </div></div></div></div><br><div id=\"sanfona2\"><div class=\"card\"><div class=\"card-header\" id=\"cabecalho-sanfona2\"><h5 class=\"mb-0\"><button class=\"btn\" data-toggle=\"collapse\" data-target=\"#corpo-sanfona2\" aria-expanded=\"false\" aria-controls=\"corpo-sanfona2\"><h4>partidos & coligações</h4></button></h5></div><div id=\"corpo-sanfona2\" class=\"collapse\" aria-labelledby=\"cabecalho-sanfona2\" data-parent=\"#sanfona2\"><div class=\"card-body\">");
+    "</div></div></div></div></div></div><br><div id=\"sanfona2\"><div class=\"card\"><div class=\"card-header\" id=\"cabecalho-sanfona2\"><h5 class=\"mb-0\"><button class=\"btn\" data-toggle=\"collapse\" data-target=\"#corpo-sanfona2\" aria-expanded=\"false\" aria-controls=\"corpo-sanfona2\"><h4>partidos & coligações</h4></button></h5></div><div id=\"corpo-sanfona2\" class=\"collapse\" aria-labelledby=\"cabecalho-sanfona2\" data-parent=\"#sanfona2\"><div class=\"card-body\">");
 
   if (data.partidos && (data.partidos.length > 0)) {
     out.w("<table class=\"table\"><thead class=\"thead-dark\"><tr><th scope=\"col\">n°</th><th scope=\"col\">sigla</th><th scope=\"col\">nome</th><th scope=\"col\">coligação</th><th scope=\"col\">votos (legenda)</th><th scope=\"col\">ações</th></tr></thead><tbody>");
@@ -102,7 +102,9 @@ function render(input, out, __component, component, state) {
     out.w("<h4><span class=\"badge badge-danger\">Em breve</span></h4>");
   }
 
-  out.w(" </div></div></div></div><br><div class=\"text-right\"><button type=\"button\" class=\"btn btn-danger btn-lg\"><i class=\"material-icons align-middle\">warning</i> Totalizar</button></div></div></main><script src=\"/estatico/js/jquery-3.4.1.min.js\"></script><script src=\"/estatico/js/popper.min.js\"></script><script src=\"/estatico/js/bootstrap.min.js\"></script>");
+  out.w(" </div></div></div></div><br><form" +
+    marko_attr("action", ("/eleicoes/" + data.eleicao.id) + "/resultado") +
+    " method=\"post\"><div class=\"text-right\"><button type=\"submit\" class=\"btn btn-danger btn-lg\"><i class=\"material-icons align-middle\">warning</i> Totalizar</button></div></form></div></main><script src=\"/estatico/js/jquery-3.4.1.min.js\"></script><script src=\"/estatico/js/popper.min.js\"></script><script src=\"/estatico/js/bootstrap.min.js\"></script>");
 
   init_components_tag({}, out);
 

@@ -8,6 +8,7 @@ class EleicaoControlador {
         return {
             eleicao: '/eleicoes',
             detalhe: '/eleicoes/:id',
+            resultado: '/eleicoes/:id/resultado',
             form: '',
             partidos: '/eleicoes/:id/partidos',
             candidatos: '/eleicoes/:id/candidatos'
@@ -35,9 +36,7 @@ class EleicaoControlador {
                         .then(partidos => {
                             const candidatoDao = new CandidatoDao(req.connection);
                             candidatoDao.listaPorIdEleicao(id)
-                                //.then(candidatos => res.marko(require('../views/eleicao/detalhe/detalhe.marko'), {eleicao, partidos, candidatos}))
                                 .then(function(candidatos) {
-                                    console.log({eleicao, partidos, candidatos});
                                     res.marko(require('../views/eleicao/detalhe/detalhe.marko'), {eleicao, partidos, candidatos});
                                 })
                                 .catch(erro => console.log(erro));
@@ -46,6 +45,13 @@ class EleicaoControlador {
                 })
                 .catch(erro => console.log(erro));
          
+        };
+    }
+
+    totalizar() {
+        return function(req, res) {
+            const id = req.params.id;
+            res.marko(require('../views/eleicao/resultado/resultado.marko')/*, {eleicao, partidos, candidatos}*/);
         };
     }
 
