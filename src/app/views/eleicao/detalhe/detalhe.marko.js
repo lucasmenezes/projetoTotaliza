@@ -43,7 +43,7 @@ function render(input, out, __component, component, state) {
     "</div></div></div></div></div></div><br><div id=\"sanfona2\"><div class=\"card\"><div class=\"card-header\" id=\"cabecalho-sanfona2\"><h5 class=\"mb-0\"><button class=\"btn\" data-toggle=\"collapse\" data-target=\"#corpo-sanfona2\" aria-expanded=\"false\" aria-controls=\"corpo-sanfona2\"><h4>partidos & coligações</h4></button></h5></div><div id=\"corpo-sanfona2\" class=\"collapse\" aria-labelledby=\"cabecalho-sanfona2\" data-parent=\"#sanfona2\"><div class=\"card-body\">");
 
   if (data.partidos && (data.partidos.length > 0)) {
-    out.w("<table class=\"table\"><thead class=\"thead-dark\"><tr><th scope=\"col\">n°</th><th scope=\"col\">sigla</th><th scope=\"col\">nome</th><th scope=\"col\">coligação</th><th scope=\"col\">votos (legenda)</th><th scope=\"col\">ações</th></tr></thead><tbody>");
+    out.w("<table class=\"table\"><thead class=\"thead-dark\"><tr><th scope=\"col\" class=\"text-center\">n°</th><th scope=\"col\" class=\"text-center\">sigla</th><th scope=\"col\">nome</th><th scope=\"col\">coligação</th><th scope=\"col\" class=\"text-center\">votos (legenda)</th><th scope=\"col\" class=\"text-center\">ações</th></tr></thead><tbody>");
 
     var $for$0 = 0;
 
@@ -52,7 +52,7 @@ function render(input, out, __component, component, state) {
 
       var $keyScope$0 = "[" + (($for$0++) + "]");
 
-      out.w("<tr><td>" +
+      out.w("<tr><td class=\"text-center\">" +
         marko_escapeXml(partido.numero) +
         "</td><td class=\"text-center\">" +
         marko_escapeXml(partido.sigla) +
@@ -73,7 +73,7 @@ function render(input, out, __component, component, state) {
   out.w("</div></div></div></div><br><div id=\"sanfona3\"><div class=\"card\"><div class=\"card-header\" id=\"cabecalho-sanfona2\"><h5 class=\"mb-0\"><button class=\"btn\" data-toggle=\"collapse\" data-target=\"#corpo-sanfona3\" aria-expanded=\"false\" aria-controls=\"corpo-sanfona3\"><h4>candidatos</h4></button></h5></div><div id=\"corpo-sanfona3\" class=\"collapse false\" aria-labelledby=\"cabecalho-sanfona3\" data-parent=\"#sanfona3\"><div class=\"card-body\">");
 
   if (data.candidatos && (data.candidatos.length > 0)) {
-    out.w("<table class=\"table\"><thead class=\"thead-dark\"><tr><th scope=\"col\">n°</th><th scope=\"col\">sigla</th><th scope=\"col\">nome de urna</th><th scope=\"col\">data de nascimento</th><th scope=\"col\">votos</th><th scope=\"col\">ações</th></tr></thead><tbody>");
+    out.w("<table class=\"table\"><thead class=\"thead-dark\"><tr><th scope=\"col\" class=\"text-center\">n°</th><th scope=\"col\" class=\"text-center\">sigla</th><th scope=\"col\">nome de urna</th><th scope=\"col\" class=\"text-center\">data de nascimento</th><th scope=\"col\" class=\"text-center\">votos</th><th scope=\"col\" class=\"text-center\">ações</th></tr></thead><tbody>");
 
     var $for$1 = 0;
 
@@ -82,15 +82,15 @@ function render(input, out, __component, component, state) {
 
       var $keyScope$1 = "[" + (($for$1++) + "]");
 
-      out.w("<tr><td>" +
+      out.w("<tr><td class=\"text-center\">" +
         marko_escapeXml(candidato.numero) +
-        "</td><td>" +
+        "</td><td class=\"text-center\">" +
         marko_escapeXml(candidato.sigla) +
         "</td><td" +
         marko_attr("title", "" + candidato.nome) +
         ">" +
         marko_escapeXml(candidato.nome_urna) +
-        "</td><td>" +
+        "</td><td class=\"text-center\">" +
         marko_escapeXml(candidato.data_nascimento) +
         "</td><td class=\"text-center\">" +
         marko_escapeXml(candidato.quantidade_votos) +

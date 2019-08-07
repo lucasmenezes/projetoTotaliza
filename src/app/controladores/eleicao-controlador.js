@@ -48,11 +48,15 @@ class EleicaoControlador {
         };
     }
 
-    totalizar() {
+    totaliza() {
         return function(req, res) {
             const id = req.params.id;
             res.marko(require('../views/eleicao/resultado/resultado.marko')/*, {eleicao, partidos, candidatos}*/);
         };
+    }
+
+    _calculaQE(id) {
+        
     }
 
     //testar

@@ -93,18 +93,18 @@
                                     <table class="table">
                                             <thead class="thead-dark">
                                                 <tr>
-                                                    <th scope="col">n°</th>
-                                                    <th scope="col">sigla</th>
+                                                    <th scope="col" class="text-center">n°</th>
+                                                    <th scope="col" class="text-center">sigla</th>
                                                     <th scope="col">nome</th>
                                                     <th scope="col">coligação</th>
-                                                    <th scope="col">votos (legenda)</th>
-                                                    <th scope="col">ações</th>
+                                                    <th scope="col" class="text-center">votos (legenda)</th>
+                                                    <th scope="col" class="text-center">ações</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
                                                 <for|partido| of=data.partidos>                     
                                                     <tr>
-                                                        <td>${partido.numero}</td>
+                                                        <td class="text-center">${partido.numero}</td>
                                                         <td class="text-center">${partido.sigla}</td>
                                                         <td>${partido.nome}</td>
                                                         <td>${partido.nome_coligacao ? partido.nome_coligacao : "-"}</td>
@@ -141,21 +141,21 @@
                                     <table class="table">
                                         <thead class="thead-dark">
                                             <tr>
-                                                <th scope="col">n°</th>
-                                                <th scope="col">sigla</th>
+                                                <th scope="col" class="text-center">n°</th>
+                                                <th scope="col" class="text-center">sigla</th>
                                                 <th scope="col">nome de urna</th>
-                                                <th scope="col">data de nascimento</th>
-                                                <th scope="col">votos</th>
-                                                <th scope="col">ações</th>
+                                                <th scope="col" class="text-center">data de nascimento</th>
+                                                <th scope="col" class="text-center">votos</th>
+                                                <th scope="col" class="text-center">ações</th>
                                             </tr>
                                         </thead>
                                         <tbody>
                                             <for|candidato| of=data.candidatos>                     
                                                 <tr>
-                                                    <td>${candidato.numero}</td>
-                                                    <td>${candidato.sigla}</td>
+                                                    <td class="text-center">${candidato.numero}</td>
+                                                    <td class="text-center">${candidato.sigla}</td>
                                                     <td title=`${candidato.nome}`>${candidato.nome_urna}</td>
-                                                    <td>${candidato.data_nascimento}</td>
+                                                    <td class="text-center">${candidato.data_nascimento}</td>
                                                     <td class="text-center">${candidato.quantidade_votos}</td>
                                                     <td class="text-center">
                                                         <i class="material-icons">how_to_vote</i>
