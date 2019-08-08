@@ -36,9 +36,7 @@ class EleicaoControlador {
                         .then(partidos => {
                             const candidatoDao = new CandidatoDao(req.connection);
                             candidatoDao.listaPorIdEleicao(id)
-                                .then(function(candidatos) {
-                                    res.marko(require('../views/eleicao/detalhe/detalhe.marko'), {eleicao, partidos, candidatos});
-                                })
+                                .then(candidatos => res.marko(require('../views/eleicao/detalhe/detalhe.marko'), {eleicao, partidos, candidatos}))
                                 .catch(erro => console.log(erro));
                         })
                         .catch(erro => console.log(erro));
@@ -51,19 +49,18 @@ class EleicaoControlador {
     totaliza() {
         return function(req, res) {
             const id = req.params.id;
-            res.marko(require('../views/eleicao/resultado/resultado.marko')/*, {eleicao, partidos, candidatos}*/);
+            const eleicaoDao = new EleicaoDao(req.connection);
+            eleicaoDao.calculaQuocienteEleitoral(id)
+                .then(quocienteEleitoral => res.marko(require('../views/eleicao/resultado/resultado.marko'), {quocienteEleitoral}))
+                .catch(erro => console.log(erro));
         };
-    }
-
-    _calculaQE(id) {
-        
     }
 
     //testar
     inclui() {
         return function(req, res) {
             const eleicao = req.params.eleicao;
-            const eleicaoDao = new EleicaoControlador(req.connection);
+            const eleicaoDao = new EleicaoDao(req.connection);
             eleicaoDao.inclui(eleicao)
                 .then(res.redirect(rotas().eleicao))
                 .catch(erro => console.log(erro));

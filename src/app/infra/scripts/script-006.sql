@@ -53,5 +53,3 @@ INSERT INTO `totaliza`.`votacao` (`partido_eleicao_id`, `quantidade_votos`, `can
 INSERT INTO `totaliza`.`votacao` (`partido_eleicao_id`, `quantidade_votos`, `candidato_id`) VALUES ((SELECT pe.id FROM partido_eleicao AS pe INNER JOIN partido AS p ON pe.partido_id = p.id WHERE p.sigla = 'PSB'), 2, null);
 INSERT INTO `totaliza`.`votacao` (`partido_eleicao_id`, `quantidade_votos`, `candidato_id`) VALUES ((SELECT pe.id FROM partido_eleicao AS pe INNER JOIN partido AS p ON pe.partido_id = p.id WHERE p.sigla = 'PT'), 0, null);  
 INSERT INTO `totaliza`.`votacao` (`partido_eleicao_id`, `quantidade_votos`, `candidato_id`) VALUES ((SELECT pe.id FROM partido_eleicao AS pe INNER JOIN partido AS p ON pe.partido_id = p.id WHERE p.sigla = 'PSD'), 9,  null);  
-
-(SELECT pe.id FROM partido_eleicao AS pe INNER JOIN partido AS p ON pe.partido_id = p.id WHERE p.sigla = 'PRB')

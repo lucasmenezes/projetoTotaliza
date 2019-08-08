@@ -69,6 +69,7 @@ CREATE TABLE IF NOT EXISTS `totaliza`.`eleicao` (
   `status` INT NOT NULL,
   `votos_nulos` INT NOT NULL,
   `votos_brancos` INT NOT NULL,
+  `votos_anulados` INT NOT NULL,
   `uf` VARCHAR(2) NOT NULL,
   `quantidade_vagas` INT NOT NULL,
   `cargo_ano_base_id` INT NOT NULL,
