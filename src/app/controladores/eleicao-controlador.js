@@ -1,5 +1,5 @@
 const EleicaoDao = require('../infra/eleicao-dao');
-const PartidoDao = require('../infra/partido-dao');
+const PartidoColigacaoDao = require('../infra/partido-coligacao-dao');
 const CandidatoDao = require('../infra/candidato-dao');
 
 class EleicaoControlador {
@@ -31,8 +31,8 @@ class EleicaoControlador {
             
             eleicaoDao.buscaPorId(id)
                 .then(eleicao => {
-                    const partidoDao = new PartidoDao(req.connection);
-                    partidoDao.listaPorIdEleicao(id)
+                    const partidoColigacaoDao = new PartidoColigacaoDao(req.connection);
+                    partidoColigacaoDao.listaVotosPorIdEleicao(id)
                         .then(partidos => {
                             const candidatoDao = new CandidatoDao(req.connection);
                             candidatoDao.listaPorIdEleicao(id)
@@ -42,7 +42,6 @@ class EleicaoControlador {
                         .catch(erro => console.log(erro));
                 })
                 .catch(erro => console.log(erro));
-         
         };
     }
 
@@ -51,7 +50,32 @@ class EleicaoControlador {
             const id = req.params.id;
             const eleicaoDao = new EleicaoDao(req.connection);
             eleicaoDao.calculaQuocienteEleitoral(id)
-                .then(quocienteEleitoral => res.marko(require('../views/eleicao/resultado/resultado.marko'), {quocienteEleitoral}))
+                .then(quocienteEleitoral => {
+                    const partidoColigacaoDao = new PartidoColigacaoDao(req.connection);
+                    partidoColigacaoDao.listaPorIdEleicao(id)
+                        .then(partidos => {
+                            for (var i = 0, len = partidos.length; i < len; i++) {
+                                var votos;
+                                if (partidos[i].coligacao_id != null) {
+                                    partidoColigacaoDao.listaVotosPorIdEleicaoIdColigacao(id, partidos[i].coligacao_id)
+                                        .then(votosLegenda => {
+                                            votos = votosLegenda;
+                                            console.log(votosLegenda);
+                                        })
+                                        .catch(erro => console.log(erro));
+                                } else {
+                                    partidoColigacaoDao.listaVotosPorIdEleicaoIdPartidoEleicao(id, partidos[i].partido_eleicao_id)
+                                        .then(votosLegenda => {
+                                            votos = votosLegenda;
+                                            console.log(votosLegenda);
+                                        })
+                                        .catch(erro => console.log(erro));
+                                }    
+                            }   
+                            res.marko(require('../views/eleicao/resultado/resultado.marko'), {quocienteEleitoral})
+                        })
+                        .catch(erro => console.log(erro));
+                })
                 .catch(erro => console.log(erro));
         };
     }
