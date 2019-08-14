@@ -49,42 +49,46 @@
                 <div id="sanfona1">
                     <div class="card">
                         <div class="card-header" id="cabecalho-sanfona1">
-                        <h5 class="mb-0">
-                            <button class="btn" data-toggle="collapse" data-target="#corpo-sanfona1" aria-expanded="false" aria-controls="corpo-sanfona1">
-                                <h4>Quociente Eleitoral (Q.E)</h4>
-                            </button>
-                        </h5>
+                            <h5 class="mb-0">
+                                <button class="btn" data-toggle="collapse" data-target="#corpo-sanfona1" aria-expanded="false" aria-controls="corpo-sanfona1">
+                                    <h4>Quociente Eleitoral (Q.E)</h4>
+                                </button>
+                            </h5>
                         </div>
 
                         <div id="corpo-sanfona1" class="collapse" aria-labelledby="cabecalho-sanfona1" data-parent="#sanfona1">
                             <div class="card-body">
-                                <div class="row">
-                                    <div class="col"><strong>Vagas (A):</strong> ${data.quocienteEleitoral.quantidade_vagas}</div>
-                                </div>
-                                <div class="row">
-                                    <div class="col"><strong>Votos (B):</strong> ${data.quocienteEleitoral.votos_nominais}</div>
-                                </div>
-                                <div class="row">
-                                    <div class="col"><strong>Votos de legenda (C):</strong> ${data.quocienteEleitoral.votos_legenda}</div>
-                                </div>
-                                <div class="row">
-                                    <div class="col"><strong>Votos válidos (nominais + legenda) (D):</strong> ${data.quocienteEleitoral.votos_validos}</div>
-                                </div>
-                                <div class="row">
-                                    <div class="col"><strong>Quociente eleitoral (Q.E) = (D) / (A) (E):</strong> ${data.quocienteEleitoral.quociente_eleitoral}</div>
-                                </div>
-                                <div class="row">
-                                    <div class="col"><strong>10% do Quociente eleitoral:</strong> ${data.quocienteEleitoral.clausula_barreira}</div>
-                                </div>
-                                <div class="row">
-                                    <div class="col"><strong>Votos em branco: </strong> ${data.quocienteEleitoral.votos_branco}</div>
-                                </div>
-                                <div class="row">
-                                    <div class="col"><strong>Votos nulos: </strong> ${data.quocienteEleitoral.votos_nulos}</div>
-                                </div>
-                                <div class="row">
-                                    <div class="col"><strong>Votos anulados e apurados em separado: </strong> ${data.quocienteEleitoral.votos_anulados}</div>
-                                </div>
+                                <table class="table">
+                                    <thead class="thead-dark">
+                                        <tr class="text-center">
+                                            <th scope="col" colspan="9" >Quociente Eleitoral (Q.E)</th>
+                                        </tr>
+                                        <tr>
+                                            <th scope="col" class="align-middle">Vagas (A)</th>
+                                            <th scope="col" class="text-center align-middle">Votos (B)</th>
+                                            <th scope="col" class="text-center align-middle">Votos de legenda (C)</th>
+                                            <th scope="col" class="text-center align-middle" title="(nominais + legenda)">Votos válidos (D)</th>
+                                            <th scope="col" class="text-center align-middle" title="(D)/(A)">Quociente Eleitoral (E)</th>
+                                            <th scope="col" class="text-center align-middle">10% do Quociente eleitoral</th>
+                                            <th scope="col" class="text-center align-middle">Votos em branco</th>
+                                            <th scope="col" class="text-center align-middle">Votos nulos</th>
+                                            <th scope="col" class="text-center align-middle">Votos anulados e apurados em separado</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td class="text-center">${data.quocienteEleitoral.quantidade_vagas}</td>
+                                            <td class="text-center">${data.quocienteEleitoral.votos_nominais}</td>
+                                            <td class="text-center">${data.quocienteEleitoral.votos_legenda}</td>
+                                            <td class="text-center">${data.quocienteEleitoral.votos_validos}</td>
+                                            <td class="text-center">${data.quocienteEleitoral.quociente_eleitoral}</td>
+                                            <td class="text-center">${data.quocienteEleitoral.clausula_barreira}</td>
+                                            <td class="text-center">${data.quocienteEleitoral.votos_brancos}</td>
+                                            <td class="text-center">${data.quocienteEleitoral.votos_nulos}</td>
+                                            <td class="text-center">${data.quocienteEleitoral.votos_anulados}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
                             </div>
                         </div>
                     </div>
@@ -117,38 +121,21 @@
                                             <th scope="col" class="text-center align-middle">Vagas preenchidas</th>
                                         </tr>
                                     </thead>
-                                    <!-->
+                                                                        
                                     <tbody>
+                                        <for|partido| of=data.quocientePartidario>                     
                                             <tr>
-                                                <td>PRB / PV / PSDB</td>
-                                                <td class="text-center">451</td>
-                                                <td class="text-center">23</td>
-                                                <td class="text-center">474</td>
-                                                <td class="text-center">4</td>
-                                                <td class="text-center">13</td>
-                                                <td class="text-center">4</td>
+                                                <td>${partido.sigla}</td>
+                                                <td class="text-center">${partido.votosLegenda}</td>
+                                                <td class="text-center">${partido.votosNominais}</td>
+                                                <td class="text-center">${partido.votosValidos}</td>
+                                                <td class="text-center">${partido.qtdVagasObtidas}</td>
+                                                <td class="text-center">${partido.qtdCandidatosQE}</td>
+                                                <td class="text-center">${partido.vagasPreenchidas}</td>
                                             </tr>
-                                            <tr>
-                                                <td class="text-center">PSD</td>
-                                                <td class="text-center">101</td>
-                                                <td class="text-center">9</td>
-                                                <td class="text-center">110</td>
-                                                <td class="text-center">0</td>
-                                                <td class="text-center">4</td>
-                                                <td class="text-center">0</td>
-                                            </tr>
-                                            <tr>
-                                                <td class="text-center">PT / PSB</td>
-                                                <td class="text-center">447</td>
-                                                <td class="text-center">2</td>
-                                                <td class="text-center">449</td>
-                                                <td class="text-center">3</td>
-                                                <td class="text-center">11</td>
-                                                <td class="text-center">3</td>
-                                            </tr>
-                                    </tbody> -->
+                                        </for>
+                                    </tbody> 
                                 </table>
-                                ${data.quocientePartidarioFinal.votosLegenda}
                             </div>
                         </div>
                     </div>

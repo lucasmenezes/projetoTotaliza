@@ -25,6 +25,7 @@ class PartidoDao {
             [idEleicao],
             (err, partidos) => {
                 if (err) return reject('Não possível recuperar os partidos participantes da eleição.');
+                console.log('partidos dao');
                 return resolve(partidos);
             });
         });

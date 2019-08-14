@@ -46,27 +46,12 @@ class EleicaoControlador {
         };
     }
 
-    //https://itnext.io/https-medium-com-popov4ik4-what-about-promises-in-loops-e94c97ad39c0
-
+   
     /*
-    async function someFunction() {
-        const myArray = [1, 2, 3];
-        const connection = mysql.createPool({ options });
-        let finalArray = [];
-        myArray.forEach((value) => { // standard forEach
-            finalArray.push(asyncFunction(connection, value).then((result) => {
-                finalValue.asyncFunctionValue = result.asyncFunctionValue; // giving instructions
-                return finalValue; // important to return the value
-            }));
-        });
-        const resolvedFinalArray = await Promise.all(finalArray); // resolving all promises
-        return functionThatUsesResolvedValues(resolvedFinalArray);
-    };
-    */
-
     totaliza() {
         return function(req, res) {
             const idEleicao = req.params.id;
+            console.log('idEleicao: ' + idEleicao);
             const eleicaoDao = new EleicaoDao(req.connection);
             eleicaoDao.calculaQuocienteEleitoral(idEleicao)
                 .then(quocienteEleitoral => {
@@ -74,172 +59,91 @@ class EleicaoControlador {
                     partidoColigacaoDao.listaPorIdEleicao(idEleicao)
                         .then(partidos => {
                             const votacaoDao = new VotacaoDao(req.connection);
-                            var quocientePartidario = [];
-                            partidos.forEach((partido) => {
-                                if (partido.coligacao_id == null) {
-                                    const idPartidoEleicao = partido.partido_eleicao_id;
-                                    quocientePartidario.push(
+                            var qp = partidos.map((partido) => {
+                                return new Promise((resolve) => {
+                                    if (partido.coligacao_id == null) {
+                                        const idPartidoEleicao = partido.partido_eleicao_id;
                                         votacaoDao.buscaVotosLegendaPartido(idEleicao, idPartidoEleicao)
-                                            .then(votosLegendaPartido => {
-                                                console.log('votosLegendaPartido ' + votosLegendaPartido);
-                                                votacaoDao.buscaVotosNominaisPartido(idEleicao, idPartidoEleicao)
-                                                    .then(votosNominaisPartido => {
-                                                        console.log('votosNominaisPartido ' + votosNominaisPartido);
-                                                        var votosValidos = votosLegendaPartido + votosNominaisPartido;
-                                                        var qtdVagasObtidas = Math.trunc(votosValidos / quocienteEleitoral.quociente_eleitoral);    
-                                                        partidoColigacaoDao.buscaQuantidadeCandidatoVotacaoMinimaPartido(idEleicao, idPartidoEleicao, quocienteEleitoral.clausula_barreira)
-                                                            .then(qtdCandidatosVotacaoMinima => {
-                                                                console.log('qtdCandidatosVotacaoMinima ' + qtdCandidatosVotacaoMinima);
-                                                                var qtdVagasPreenchidas = (qtdCandidatosVotacaoMinima >= qtdVagasObtidas ?  qtdVagasObtidas : qtdCandidatosVotacaoMinima);
-                                                                partido.votosLegenda = votosLegendaPartido;
-                                                                partido.votosLegenda = votosNominaisPartido;
-                                                                partido.votosValidos = votosValidos;
-                                                                partido.qtdVagasObtidas = qtdVagasObtidas;
-                                                                partido.qtdCandidatosQE = qtdCandidatosVotacaoMinima;
-                                                                partido.vagasPreenchidas = qtdVagasPreenchidas;    
-
-                                                                return partido;
-                                                            })
-                                                            .catch(erro => console.log(erro));
-                                                    })
-                                                    .catch(erro => console.log(erro));
+                                        .then(votosLegendaPartido => {
+                                            votacaoDao.buscaVotosNominaisPartido(idEleicao, idPartidoEleicao)
+                                                .then(votosNominaisPartido => {
+                                                    var votosValidos = votosLegendaPartido + votosNominaisPartido;
+                                                    var qtdVagasObtidas = Math.trunc(votosValidos / quocienteEleitoral.quociente_eleitoral);    
+                                                    partidoColigacaoDao.buscaQuantidadeCandidatoVotacaoMinimaPartido(idEleicao, idPartidoEleicao, quocienteEleitoral.clausula_barreira)
+                                                        .then(qtdCandidatosVotacaoMinima => {
+                                                            var qtdVagasPreenchidas = (qtdCandidatosVotacaoMinima >= qtdVagasObtidas ?  qtdVagasObtidas : qtdCandidatosVotacaoMinima);
+                                                            partido.votosLegenda = votosLegendaPartido;
+                                                            partido.votosNominais = votosNominaisPartido;
+                                                            partido.votosValidos = votosValidos;
+                                                            partido.qtdVagasObtidas = qtdVagasObtidas;
+                                                            partido.qtdCandidatosQE = qtdCandidatosVotacaoMinima;
+                                                            partido.vagasPreenchidas = qtdVagasPreenchidas;    
+                                                            resolve(partido);
+                                                        })
+                                                        .catch(erro => console.log(erro));
+                                                })
+                                                .catch(erro => console.log(erro));
                                             })
-                                            .catch(erro => console.log(erro)));    
-                                } else {
-                                    const idColigacao = partido.coligacao_id;
-                                    quocientePartidario.push(
+                                        .catch(erro => console.log(erro));    
+                                    } else {
+                                        const idColigacao = partido.coligacao_id;
                                         votacaoDao.buscaVotosLegendaColigacao(idEleicao, idColigacao)
                                             .then(votosLegendaColigacao => {
-                                                console.log('votosLegendaColigacao ' + votosLegendaColigacao);
                                                 votacaoDao.buscaVotosNominaisColigacao(idEleicao, idColigacao)
                                                     .then(votosNominaisColigacao => {
-                                                        console.log('votosNominaisColigacao ' + votosNominaisColigacao);
                                                         var votosValidos = votosLegendaColigacao + votosNominaisColigacao;
                                                         var qtdVagasObtidas = Math.trunc(votosValidos / quocienteEleitoral.quociente_eleitoral);        
                                                         partidoColigacaoDao.buscaQuantidadeCandidatoVotacaoMinimaColigacao(idEleicao, idColigacao, quocienteEleitoral.clausula_barreira)
                                                             .then(qtdCandidatosVotacaoMinima => {
-                                                                console.log('qtdCandidatosVotacaoMinima ' + qtdCandidatosVotacaoMinima);
                                                                 var qtdVagasPreenchidas = (qtdCandidatosVotacaoMinima >= qtdVagasObtidas ? qtdVagasObtidas : qtdCandidatosVotacaoMinima);
                                                                 partido.votosLegenda = votosLegendaColigacao;
-                                                                partido.votosLegenda = votosNominaisColigacao;
+                                                                partido.votosNominais = votosNominaisColigacao;
                                                                 partido.votosValidos = votosValidos;
                                                                 partido.qtdVagasObtidas = qtdVagasObtidas;
                                                                 partido.qtdCandidatosQE = qtdCandidatosVotacaoMinima;
                                                                 partido.vagasPreenchidas = qtdVagasPreenchidas;
-                                                                console.log(partido);
-                                                                return partido;    
+                                                                resolve(partido);    
                                                             })
                                                             .catch(erro => console.log(erro));
                                                     })
                                                     .catch(erro => console.log(erro));    
                                             })
-                                            .catch(erro => console.log(erro)));
-                                }
-                            });
-                            
-                            /*
-                            for (var partido of partidos) {
-                                if (partido.coligacao_id == null) {                                    
-                                    const idPartidoEleicao = partido.partido_eleicao_id;
-                                    votacaoDao.buscaVotosLegendaPartido(idEleicao, idPartidoEleicao)
-                                        .then(votosLegendaPartido => {
-                                            votacaoDao.buscaVotosNominaisPartido(idEleicao, idPartidoEleicao)
-                                                .then(votosNominaisPartido => {
-                                                    var votosValidos = votosLegendaPartido + votosNominaisPartido;
-                                                    var qtdVagasObtidas = Math.trunc(votosValidos / quocienteEleitoral.quociente_eleitoral);
-                                                    partidoColigacaoDao.buscaQuantidadeCandidatoVotacaoMinimaPartido(idEleicao, idPartidoEleicao, quocienteEleitoral.clausula_barreira)
-                                                        .then(qtdCandidatosVotacaoMinima => {
-                                                            var qtdVagasPreenchidas = (qtdCandidatosVotacaoMinima >= qtdVagasObtidas ?  qtdVagasObtidas : qtdCandidatosVotacaoMinima);
-                                                            partido.votosLegenda = votosLegendaPartido;
-                                                            partido.votosLegenda = votosNominaisPartido;
-                                                            partido.votosValidos = votosValidos;
-                                                            partido.qtdVagasObtidas = qtdVagasObtidas;
-                                                            partido.qtdCandidatosQE = qtdCandidatosVotacaoMinima;
-                                                            partido.vagasPreenchidas = qtdVagasPreenchidas;
-                                                            quocientePartidario.push(partido);
-                                                        })
-                                                        .catch(erro => console.log(erro));
-                                                })
-                                                .catch(erro => console.log(erro));
-                                        })
-                                        .catch(erro => console.log(erro));
-                                } else {
-                                    const idColigacao = partido.coligacao_id;
-                                    votacaoDao.buscaVotosLegendaColigacao(idEleicao, idColigacao)
-                                        .then(votosLegendaColigacao => {
-                                            votacaoDao.buscaVotosNominaisColigacao(idEleicao, idColigacao)
-                                            .then(votosNominaisColigacao => {
-                                                var votosValidos = votosLegendaColigacao + votosNominaisColigacao;
-                                                var qtdVagasObtidas = Math.trunc(votosValidos / quocienteEleitoral.quociente_eleitoral);
-                                                partidoColigacaoDao.buscaQuantidadeCandidatoVotacaoMinimaColigacao(idEleicao, idColigacao, quocienteEleitoral.clausula_barreira)
-                                                        .then(qtdCandidatosVotacaoMinima => {
-                                                            var qtdVagasPreenchidas = (qtdCandidatosVotacaoMinima >= qtdVagasObtidas ? qtdVagasObtidas : qtdCandidatosVotacaoMinima);
-                                                            partido.votosLegenda = votosLegendaColigacao;
-                                                            partido.votosLegenda = votosNominaisColigacao;
-                                                            partido.votosValidos = votosValidos;
-                                                            partido.qtdVagasObtidas = qtdVagasObtidas;
-                                                            partido.qtdCandidatosQE = qtdCandidatosVotacaoMinima;
-                                                            partido.vagasPreenchidas = qtdVagasPreenchidas;
-                                                            quocientePartidario.push(partido);
-                                                        })
-                                                        .catch(erro => console.log(erro));
-                                            })
                                             .catch(erro => console.log(erro));
-                                        })
-                                        .catch(erro => console.log(erro));
-                                }  
-                            } 
-                            */           
-                           const quocientePartidarioFinal = Promise.all(quocientePartidario);
-                           res.marko(require('../views/eleicao/resultado/resultado.marko'), {quocienteEleitoral, quocientePartidarioFinal})
+                                    }
+                                });        
+                           });         
+                           Promise.all(qp).then((quocientePartidario) => { 
+                                    console.log(quocienteEleitoral);
+                                    console.log(quocientePartidario);
+                                    res.marko(require('../views/eleicao/resultado/resultado.marko'), {quocienteEleitoral, quocientePartidario});
+                           });
                         })
                         .catch(erro => console.log(erro));
                 })
                 .catch(erro => console.log(erro));
         };
     }
-
-    //testar
-    inclui() {
+    */
+    totaliza() {
         return function(req, res) {
-            const eleicao = req.params.eleicao;
-            const eleicaoDao = new EleicaoDao(req.connection);
-            eleicaoDao.inclui(eleicao)
-                .then(res.redirect(rotas().eleicao))
-                .catch(erro => console.log(erro));
+            _calculaQuocienteEleitoral();
+            _calculaQuocientePartidario();            
+            _proclamaEleitos();
+            res.marko(require('../views/eleicao/resultado/resultado.marko'), {quocienteEleitoral: {}, quocientePartidario: []})
         };
     }
+}
 
-    //testar
-    atualiza() {
-        return function(req, res) {
-            const eleicao = req.params.eleicao;
-            const eleicaoDao = new EleicaoDao(connection);
-            eleicaoDao.atualiza(eleicao)
-                .then(res.redirect(rotas().eleicao))
-                .catch(erro => console.log(erro));
-        };
-    }
+_calculaQuocienteEleitoral = function () {
+    console.log('calculaQuocienteEleitoral');
+}
 
-    //testar
-    deleta() {
-        return function(req, res) {
-            const id = req.params.id;
-            const eleicaoDao = new EleicaoDao(req.connection);
+_calculaQuocientePartidario = function() {
+    console.log('calculaQuocientePartidario');
+}
 
-            eleicaoDao.deleta(id)
-                .then()
-                .catch(erro => console.log(erro));
-        };
-    }
-
-    incluiCandidatos() {
-
-    }
-
-    excluiCandidatos() {
-
-    }
+_proclamaEleitos = function() {
+    console.log('proclamaEleitos');
 }
 
 module.exports = EleicaoControlador;
