@@ -10,6 +10,8 @@ CREATE DATABASE `totaliza` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb
 USE `totaliza`;
 
 /*
+DROP TABLE quociente_partidario;
+DROP TABLE quociente_eleitoral;
 DROP TABLE votacao;
 DROP TABLE candidato;
 DROP TABLE partido_eleicao;
@@ -147,6 +149,9 @@ CREATE TABLE IF NOT EXISTS `totaliza`.`candidato` (
   `nome_urna` VARCHAR(255) NOT NULL,
   `data_nascimento` DATE NOT NULL,
   `partido_eleicao_id` INT NOT NULL,
+  `situacao` INT NULL,
+  `percentual_comparecimento` DECIMAL NULL,
+  `percentual_votos_validos` DECIMAL NULL,
   PRIMARY KEY (`id`),
   INDEX `fk_candidato_partido_coligacao_id` (`partido_eleicao_id` ASC) VISIBLE,
   CONSTRAINT `fk_candidato_partido_coligacao_id`
@@ -171,6 +176,53 @@ CREATE TABLE IF NOT EXISTS `totaliza`.`votacao` (
   CONSTRAINT `fk_votacao_partido_coligacao_eleicao1`
     FOREIGN KEY (`partido_eleicao_id`)
     REFERENCES `totaliza`.`partido_eleicao` (`id`))
+ENGINE = InnoDB
+AUTO_INCREMENT = 1
+DEFAULT CHARACTER SET = utf8mb4
+COLLATE = utf8mb4_0900_ai_ci;
+
+CREATE TABLE IF NOT EXISTS `totaliza`.`quociente_eleitoral` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `quantidade_votos` INT NOT NULL,
+  `quantidade_votos_legenda` INT NOT NULL,
+  `quantidade_votos_validos` INT NOT NULL,
+  `quociente_eleitoral` INT NOT NULL,
+  `clausulaBarreira` DECIMAL NOT NULL,
+  `eleicao_id` INT NOT NULL,
+  PRIMARY KEY (`id`),
+  INDEX `fk_quociente_eleitoral_eleicao_idx` (`eleicao_id` ASC) VISIBLE,
+  CONSTRAINT `fk_quociente_eleitoral_eleicao`
+    FOREIGN KEY (`eleicao_id`)
+    REFERENCES `totaliza`.`eleicao` (`id`))
+ENGINE = InnoDB
+AUTO_INCREMENT = 1
+DEFAULT CHARACTER SET = utf8mb4
+COLLATE = utf8mb4_0900_ai_ci;
+
+CREATE TABLE IF NOT EXISTS `totaliza`.`quociente_partidario` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `quantidade_votos_nominais` INT NOT NULL,
+  `quantidade_votos_legenda` INT NOT NULL,
+  `quantidade_votos_validos` INT NOT NULL,
+  `quantidade_vagas_obtidas_qp` INT NOT NULL,
+  `quantidade_candidatos_qe` INT NOT NULL,
+  `quantidade_vagas_preenchidas` INT NOT NULL,
+  `partido_eleicao_id` INT NULL,
+  `coligacao_id` INT NULL,
+  `eleicao_id` INT NOT NULL,
+  PRIMARY KEY (`id`),
+  INDEX `fk_quociente_partidario_partido_eleicao1_idx` (`partido_eleicao_id` ASC) VISIBLE,
+  INDEX `fk_quociente_partidario_coligacao1_idx` (`coligacao_id` ASC) VISIBLE,
+  INDEX `fk_quociente_partidario_eleicao1_idx` (`eleicao_id` ASC) VISIBLE,
+  CONSTRAINT `fk_quociente_partidario_partido_eleicao1`
+    FOREIGN KEY (`partido_eleicao_id`)
+    REFERENCES `totaliza`.`partido_eleicao` (`id`),
+  CONSTRAINT `fk_quociente_partidario_coligacao1`
+    FOREIGN KEY (`coligacao_id`)
+    REFERENCES `totaliza`.`coligacao` (`id`),
+  CONSTRAINT `fk_quociente_partidario_eleicao1`
+    FOREIGN KEY (`eleicao_id`)
+    REFERENCES `totaliza`.`eleicao` (`id`))
 ENGINE = InnoDB
 AUTO_INCREMENT = 1
 DEFAULT CHARACTER SET = utf8mb4
