@@ -70,6 +70,32 @@ class EleicaoDao {
             resolve();
         });
     }
+
+    incluiQE() {
+        return new Promise((resolve, reject) => {
+            this._connection.query(
+                '',
+                [],
+                (err) => {
+                    if (err) console.log(err);
+                    resolve();
+                }
+            );
+        });
+    }
+
+    incluiQP() {
+
+    }
+
+    recuperaQE(idEleicao) {
+
+    }
+
+    recuperaQP(idEleicao) {
+
+    }
+
 }
 
 module.exports = EleicaoDao;

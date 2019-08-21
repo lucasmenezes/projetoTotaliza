@@ -143,6 +143,13 @@ function _calculaQuocientePartidario(connection, idEleicao, quocienteEleitoral) 
 function _proclamaEleitos() {
     return new Promise(function(resolve, reject){
         console.log('proclamaEleitos');
+        
+        //recuperar os dados de Quociente partidário
+        //recuperar os dados de Quociente eleitoral
+        //eleger os eleitos por Q.P
+        //eleger os eleitos por Média
+        
+        
         resolve();
     });
 }
