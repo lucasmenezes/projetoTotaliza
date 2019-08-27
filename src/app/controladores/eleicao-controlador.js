@@ -2,6 +2,7 @@ const EleicaoDao = require('../infra/eleicao-dao');
 const PartidoColigacaoDao = require('../infra/partido-coligacao-dao');
 const CandidatoDao = require('../infra/candidato-dao');
 const VotacaoDao = require('../infra/votacao-dao');
+const QuocienteEleitoral = require('../modelos/quocienteEleitoral');
 
 class EleicaoControlador {
 
@@ -64,11 +65,13 @@ class EleicaoControlador {
 }
 
 function _calculaQuocienteEleitoral(connection, idEleicao){
-    console.log('calculoQuocienteEleitoral');
-    return new Promise(function(resolve, reject) {
+        return new Promise(function(resolve, reject) {
         const eleicaoDao = new EleicaoDao(connection);
         eleicaoDao.calculaQuocienteEleitoral(idEleicao)
-            .then(quocienteEleitoral => resolve(quocienteEleitoral));
+            .then(qe => {
+                const quocienteEleitoral = new QuocienteEleitoral(idEleicao, qe.vagas, qe.votosNominais, qe.votosLegenda, qe.votosBrancos, qe.votosNulos, qe.votosAnulados);
+                resolve(quocienteEleitoral);
+            }).catch(erro => console.log('Erro ao tentar calcular o quociente eleitoral'));
     });
 }
 
@@ -87,8 +90,8 @@ function _calculaQuocientePartidario(connection, idEleicao, quocienteEleitoral) 
                                 votacaoDao.buscaVotosNominaisPartido(idEleicao, idPartidoEleicao)
                                     .then(votosNominaisPartido => {
                                         var votosValidos = votosLegendaPartido + votosNominaisPartido;
-                                        var qtdVagasObtidas = Math.trunc(votosValidos / quocienteEleitoral.quociente_eleitoral);    
-                                        partidoColigacaoDao.buscaQuantidadeCandidatoVotacaoMinimaPartido(idEleicao, idPartidoEleicao, quocienteEleitoral.clausula_barreira)
+                                        var qtdVagasObtidas = Math.trunc(votosValidos / quocienteEleitoral.quocienteEleitoral);    
+                                        partidoColigacaoDao.buscaQuantidadeCandidatoVotacaoMinimaPartido(idEleicao, idPartidoEleicao, quocienteEleitoral.clausulaBarreira)
                                             .then(qtdCandidatosVotacaoMinima => {
                                                 var qtdVagasPreenchidas = (qtdCandidatosVotacaoMinima >= qtdVagasObtidas ?  qtdVagasObtidas : qtdCandidatosVotacaoMinima);
                                                 partido.votosLegenda = votosLegendaPartido;
@@ -111,8 +114,8 @@ function _calculaQuocientePartidario(connection, idEleicao, quocienteEleitoral) 
                                     votacaoDao.buscaVotosNominaisColigacao(idEleicao, idColigacao)
                                         .then(votosNominaisColigacao => {
                                             var votosValidos = votosLegendaColigacao + votosNominaisColigacao;
-                                            var qtdVagasObtidas = Math.trunc(votosValidos / quocienteEleitoral.quociente_eleitoral);        
-                                            partidoColigacaoDao.buscaQuantidadeCandidatoVotacaoMinimaColigacao(idEleicao, idColigacao, quocienteEleitoral.clausula_barreira)
+                                            var qtdVagasObtidas = Math.trunc(votosValidos / quocienteEleitoral.quocienteEleitoral);        
+                                            partidoColigacaoDao.buscaQuantidadeCandidatoVotacaoMinimaColigacao(idEleicao, idColigacao, quocienteEleitoral.clausulaBarreira)
                                                 .then(qtdCandidatosVotacaoMinima => {
                                                     var qtdVagasPreenchidas = (qtdCandidatosVotacaoMinima >= qtdVagasObtidas ? qtdVagasObtidas : qtdCandidatosVotacaoMinima);
                                                     partido.votosLegenda = votosLegendaColigacao;
@@ -132,7 +135,6 @@ function _calculaQuocientePartidario(connection, idEleicao, quocienteEleitoral) 
                     });        
                 });         
                 Promise.all(qp).then((quocientePartidario) => { 
-                        console.log(quocientePartidario);
                         resolve(quocientePartidario);
                 });
             })

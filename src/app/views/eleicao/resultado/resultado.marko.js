@@ -22,23 +22,23 @@ function render(input, out, __component, component, state) {
   component_globals_tag({}, out);
 
   out.w("<nav class=\"navbar navbar-expand-md navbar-dark bg-dark fixed-top\"><a class=\"navbar-brand\" href=\"/\">Projeto Totaliza</a><button class=\"navbar-toggler\" type=\"button\" data-toggle=\"collapse\" data-target=\"#navbarsExampleDefault\" aria-controls=\"navbarsExampleDefault\" aria-expanded=\"false\" aria-label=\"Toggle navigation\"><span class=\"navbar-toggler-icon\"></span></button><div class=\"collapse navbar-collapse\" id=\"navbarsExampleDefault\"><ul class=\"navbar-nav mr-auto\"><li class=\"nav-item active\"><a class=\"nav-link\" href=\"/\">Home <span class=\"sr-only\">(current)</span></a></li><li class=\"nav-item\"><a class=\"nav-link\" href=\"/eleicoes\">Eleições</a></li><li class=\"nav-item\"><a class=\"nav-link disabled\" href=\"\" tabindex=\"-1\" aria-disabled=\"true\">Em breve</a></li><li class=\"nav-item dropdown\"><a class=\"nav-link dropdown-toggle\" href=\"\" id=\"dropdown01\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">Em breve</a><div class=\"dropdown-menu\" aria-labelledby=\"dropdown01\"><a class=\"dropdown-item\" href=\"\">Em breve</a><a class=\"dropdown-item\" href=\"\">Em breve</a><a class=\"dropdown-item\" href=\"\">Em breve</a></div></li></ul><form class=\"form-inline my-2 my-lg-0\"><input class=\"form-control mr-sm-2\" type=\"text\" placeholder=\"Em breve...\" aria-label=\"Search\"><button class=\"btn btn-secondary my-2 my-sm-0\" type=\"submit\">Buscar</button></form></div></nav><main role=\"main\" class=\"container\"><div class=\"starter-template\"><div id=\"sanfona1\"><div class=\"card\"><div class=\"card-header\" id=\"cabecalho-sanfona1\"><h5 class=\"mb-0\"><button class=\"btn\" data-toggle=\"collapse\" data-target=\"#corpo-sanfona1\" aria-expanded=\"false\" aria-controls=\"corpo-sanfona1\"><h4>Quociente Eleitoral (Q.E)</h4></button></h5></div><div id=\"corpo-sanfona1\" class=\"collapse\" aria-labelledby=\"cabecalho-sanfona1\" data-parent=\"#sanfona1\"><div class=\"card-body\"><table class=\"table\"><thead class=\"thead-dark\"><tr class=\"text-center\"><th scope=\"col\" colspan=\"9\">Quociente Eleitoral (Q.E)</th></tr><tr><th scope=\"col\" class=\"align-middle\">Vagas (A)</th><th scope=\"col\" class=\"text-center align-middle\">Votos (B)</th><th scope=\"col\" class=\"text-center align-middle\">Votos de legenda (C)</th><th scope=\"col\" class=\"text-center align-middle\" title=\"(nominais + legenda)\">Votos válidos (D)</th><th scope=\"col\" class=\"text-center align-middle\" title=\"(D)/(A)\">Quociente Eleitoral (E)</th><th scope=\"col\" class=\"text-center align-middle\">10% do Quociente eleitoral</th><th scope=\"col\" class=\"text-center align-middle\">Votos em branco</th><th scope=\"col\" class=\"text-center align-middle\">Votos nulos</th><th scope=\"col\" class=\"text-center align-middle\">Votos anulados e apurados em separado</th></tr></thead><tbody><tr><td class=\"text-center\">" +
-    marko_escapeXml(data.quocienteEleitoral.quantidade_vagas) +
+    marko_escapeXml(data.quocienteEleitoral.vagas) +
     "</td><td class=\"text-center\">" +
-    marko_escapeXml(data.quocienteEleitoral.votos_nominais) +
+    marko_escapeXml(data.quocienteEleitoral.votosNominais) +
     "</td><td class=\"text-center\">" +
-    marko_escapeXml(data.quocienteEleitoral.votos_legenda) +
+    marko_escapeXml(data.quocienteEleitoral.votosLegenda) +
     "</td><td class=\"text-center\">" +
-    marko_escapeXml(data.quocienteEleitoral.votos_validos) +
+    marko_escapeXml(data.quocienteEleitoral.votosValidos) +
     "</td><td class=\"text-center\">" +
-    marko_escapeXml(data.quocienteEleitoral.quociente_eleitoral) +
+    marko_escapeXml(data.quocienteEleitoral.quocienteEleitoral) +
     "</td><td class=\"text-center\">" +
-    marko_escapeXml(data.quocienteEleitoral.clausula_barreira) +
+    marko_escapeXml(data.quocienteEleitoral.clausulaBarreira) +
     "</td><td class=\"text-center\">" +
-    marko_escapeXml(data.quocienteEleitoral.votos_brancos) +
+    marko_escapeXml(data.quocienteEleitoral.votosBrancos) +
     "</td><td class=\"text-center\">" +
-    marko_escapeXml(data.quocienteEleitoral.votos_nulos) +
+    marko_escapeXml(data.quocienteEleitoral.votosNulos) +
     "</td><td class=\"text-center\">" +
-    marko_escapeXml(data.quocienteEleitoral.votos_anulados) +
+    marko_escapeXml(data.quocienteEleitoral.votosAnulados) +
     "</td></tr></tbody></table></div></div></div></div><br><div id=\"sanfona2\"><div class=\"card\"><div class=\"card-header\" id=\"cabecalho-sanfona2\"><h5 class=\"mb-0\"><button class=\"btn\" data-toggle=\"collapse\" data-target=\"#corpo-sanfona2\" aria-expanded=\"false\" aria-controls=\"corpo-sanfona2\"><h4>Quociente Partidário (Q.P)</h4></button></h5></div><div id=\"corpo-sanfona2\" class=\"collapse\" aria-labelledby=\"cabecalho-sanfona2\" data-parent=\"#sanfona2\"><div class=\"card-body\"><table class=\"table\"><thead class=\"thead-dark\"><tr class=\"text-center\"><th scope=\"col\" colspan=\"7\">Quociente Partidário (Q.P)</th></tr><tr><th scope=\"col\" class=\"align-middle\">Partido/Coligação</th><th scope=\"col\" class=\"text-center align-middle\">Votos nominais (B)</th><th scope=\"col\" class=\"text-center align-middle\">Votos de legenda (C)</th><th scope=\"col\" class=\"text-center align-middle\">Votos válidos (D)</th><th scope=\"col\" class=\"text-center align-middle\">Q.P. (D)/(E)</th><th scope=\"col\" class=\"text-center align-middle\">Candidatos com 10% Q.E.</th><th scope=\"col\" class=\"text-center align-middle\">Vagas preenchidas</th></tr></thead><tbody>");
 
   var $for$0 = 0;

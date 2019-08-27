@@ -16,8 +16,6 @@ class Eleicao {
     get id() {
         return this.id;
     }
-
-
 }
 
 module.exports = Eleicao;

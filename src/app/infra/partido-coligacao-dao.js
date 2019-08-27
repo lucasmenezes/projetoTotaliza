@@ -20,12 +20,10 @@ class PartidoDao {
                +'LEFT JOIN coligacao AS c ON pc.coligacao_id = c.id '
                +'WHERE pe.eleicao_id = ? '
                +'GROUP BY pe.eleicao_id, c.id '
-               +'ORDER BY sigla'    
-            ,
+               +'ORDER BY sigla',
             [idEleicao],
             (err, partidos) => {
                 if (err) return reject('Não possível recuperar os partidos participantes da eleição.');
-                console.log('partidos dao');
                 return resolve(partidos);
             });
         });
