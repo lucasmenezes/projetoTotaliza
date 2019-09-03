@@ -57,9 +57,9 @@ function render(input, out, __component, component, state) {
       "</td><td class=\"text-center\">" +
       marko_escapeXml(partido.votosValidos) +
       "</td><td class=\"text-center\">" +
-      marko_escapeXml(partido.qtdVagasObtidas) +
+      marko_escapeXml(partido.vagasObtidasQP) +
       "</td><td class=\"text-center\">" +
-      marko_escapeXml(partido.qtdCandidatosQE) +
+      marko_escapeXml(partido.candidatosQE) +
       "</td><td class=\"text-center\">" +
       marko_escapeXml(partido.vagasPreenchidas) +
       "</td></tr>");

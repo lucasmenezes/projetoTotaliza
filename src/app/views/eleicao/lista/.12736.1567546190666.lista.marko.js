@@ -40,7 +40,7 @@ function render(input, out, __component, component, state) {
       "</td><td><a href=\"\">Ações</a></td></tr>");
   });
 
-  out.w("</tbody></table></div></main><script src=\"/estatico/js/jquery-3.4.1.min.js\"></script><script src=\"/estatico/js/popper.min.js\"></script><script src=\"/estatico/js/bootstrap.min.js\"></script><script>\r\n        $('td.dataEleicao').each(function(index) {\r\n            console.log($(this).text());\r\n            var date = new Date($(this).text());\r\n            date.setDate(date.getDate() +1);\r\n            console.log(date.toLocaleDateString());\r\n            $(this).text(date.toLocaleDateString());\r\n        });\r\n       \r\n    </script>");
+  out.w("</tbody></table></div></main><script src=\"/estatico/js/jquery-3.4.1.min.js\"></script><script src=\"/estatico/js/popper.min.js\"></script><script src=\"/estatico/js/bootstrap.min.js\"></script><script>\r\n        $('td.dataEleicao').each(function() {\r\n            console.log($(this).text());\r\n             var date = new Date($(this).text());\r\n             console.log(date);\r\n        });\r\n       \r\n    </script>");
 
   init_components_tag({}, out);
 

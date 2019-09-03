@@ -3,6 +3,7 @@ const PartidoColigacaoDao = require('../infra/partido-coligacao-dao');
 const CandidatoDao = require('../infra/candidato-dao');
 const VotacaoDao = require('../infra/votacao-dao');
 const QuocienteEleitoral = require('../modelos/quocienteEleitoral');
+const QuocientePartidario = require('../modelos/quocientePartidario');
 
 class EleicaoControlador {
 
@@ -93,14 +94,17 @@ function _calculaQuocientePartidario(connection, idEleicao, quocienteEleitoral) 
                                         var qtdVagasObtidas = Math.trunc(votosValidos / quocienteEleitoral.quocienteEleitoral);    
                                         partidoColigacaoDao.buscaQuantidadeCandidatoVotacaoMinimaPartido(idEleicao, idPartidoEleicao, quocienteEleitoral.clausulaBarreira)
                                             .then(qtdCandidatosVotacaoMinima => {
-                                                var qtdVagasPreenchidas = (qtdCandidatosVotacaoMinima >= qtdVagasObtidas ?  qtdVagasObtidas : qtdCandidatosVotacaoMinima);
+                                                var qtdVagasPreenchidas = (qtdCandidatosVotacaoMinima >= qtdVagasObtidas ? qtdVagasObtidas : qtdCandidatosVotacaoMinima);
+                                                const quocientePartidario = new QuocientePartidario(idEleicao, idPartidoEleicao, null, partido.sigla, votosNominaisPartido, votosLegendaPartido, votosValidos, qtdVagasObtidas, qtdCandidatosVotacaoMinima, qtdVagasPreenchidas);
+                                                /*var qtdVagasPreenchidas = (qtdCandidatosVotacaoMinima >= qtdVagasObtidas ?  qtdVagasObtidas : qtdCandidatosVotacaoMinima);
                                                 partido.votosLegenda = votosLegendaPartido;
                                                 partido.votosNominais = votosNominaisPartido;
                                                 partido.votosValidos = votosValidos;
                                                 partido.qtdVagasObtidas = qtdVagasObtidas;
                                                 partido.qtdCandidatosQE = qtdCandidatosVotacaoMinima;
-                                                partido.vagasPreenchidas = qtdVagasPreenchidas;    
-                                                resolve(partido);
+                                                partido.vagasPreenchidas = qtdVagasPreenchidas;
+                                                resolve(partido);*/
+                                                resolve(quocientePartidario);
                                             })
                                             .catch(erro => console.log(erro));
                                     })
@@ -117,14 +121,19 @@ function _calculaQuocientePartidario(connection, idEleicao, quocienteEleitoral) 
                                             var qtdVagasObtidas = Math.trunc(votosValidos / quocienteEleitoral.quocienteEleitoral);        
                                             partidoColigacaoDao.buscaQuantidadeCandidatoVotacaoMinimaColigacao(idEleicao, idColigacao, quocienteEleitoral.clausulaBarreira)
                                                 .then(qtdCandidatosVotacaoMinima => {
+                                                    console.log('qtdCandidatosVotacaoMinima: ' + qtdCandidatosVotacaoMinima);
+                                                    
                                                     var qtdVagasPreenchidas = (qtdCandidatosVotacaoMinima >= qtdVagasObtidas ? qtdVagasObtidas : qtdCandidatosVotacaoMinima);
+                                                    const quocientePartidario = new QuocientePartidario(idEleicao, null, idColigacao, partido.sigla, votosNominaisColigacao, votosLegendaColigacao, votosValidos, qtdVagasObtidas, qtdCandidatosVotacaoMinima, qtdVagasPreenchidas);
+                                                    /*var qtdVagasPreenchidas = (qtdCandidatosVotacaoMinima >= qtdVagasObtidas ? qtdVagasObtidas : qtdCandidatosVotacaoMinima);
                                                     partido.votosLegenda = votosLegendaColigacao;
                                                     partido.votosNominais = votosNominaisColigacao;
                                                     partido.votosValidos = votosValidos;
                                                     partido.qtdVagasObtidas = qtdVagasObtidas;
                                                     partido.qtdCandidatosQE = qtdCandidatosVotacaoMinima;
                                                     partido.vagasPreenchidas = qtdVagasPreenchidas;
-                                                    resolve(partido);    
+                                                    resolve(partido);*/
+                                                    resolve(quocientePartidario);
                                                 })
                                                 .catch(erro => console.log(erro));
                                         })
@@ -134,7 +143,8 @@ function _calculaQuocientePartidario(connection, idEleicao, quocienteEleitoral) 
                         }
                     });        
                 });         
-                Promise.all(qp).then((quocientePartidario) => { 
+                Promise.all(qp).then((quocientePartidario) => {
+                        console.log(quocientePartidario);
                         resolve(quocientePartidario);
                 });
             })

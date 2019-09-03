@@ -73,13 +73,13 @@
     <script src="/estatico/js/popper.min.js"></script>
     <script src="/estatico/js/bootstrap.min.js"></script>
     <script>
-        console.log($('td.dataEleicao').text());
-/*
-        var arr = $.map($('.dataEleicao'), function (el) { 
-            console.log(el);
-            return el; 
+        $('td.dataEleicao').each(function(index) {
+            console.log($(this).text());
+            var date = new Date($(this).text());
+            date.setDate(date.getDate() +1);
+            console.log(date.toLocaleDateString());
+            $(this).text(date.toLocaleDateString());
         });
-*/
     </script>
   </body>
 </html>
