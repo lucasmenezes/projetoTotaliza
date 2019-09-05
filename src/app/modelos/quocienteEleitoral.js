@@ -10,7 +10,7 @@ class QuocienteEleitoral {
     }
 
     get idEleicao() {
-        return this._idEleicao;
+        return parseInt(this._idEleicao);
     }
 
     get vagas() {
